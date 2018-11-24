@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		253EEBA74A90127E627CC2C9 /* Pods_Max.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9FF0E8541D46F636461FC2 /* Pods_Max.framework */; };
 		322E1EB30DC81AAB00CB6DDB /* OggSpeexEncoderTask.mm in Sources */ = {isa = PBXBuildFile; fileRef = 322E1EB20DC81AAB00CB6DDB /* OggSpeexEncoderTask.mm */; };
 		325BFE4E1050DB5A00FE11C2 /* CueSheet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 325BFE4A1050DB5A00FE11C2 /* CueSheet.strings */; };
 		325BFE4F1050DB5A00FE11C2 /* Menus.strings in Resources */ = {isa = PBXBuildFile; fileRef = 325BFE4C1050DB5A00FE11C2 /* Menus.strings */; };
@@ -285,6 +286,7 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1DC1094139AE09B3CBE5E796 /* Pods-Max.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Max.release.xcconfig"; path = "Pods/Target Support Files/Pods-Max/Pods-Max.release.xcconfig"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -300,9 +302,6 @@
 		325BFE5A1050DB8600FE11C2 /* Italian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Italian; path = Italian.lproj/Preferences.strings; sourceTree = "<group>"; };
 		325BFE5B1050DB8600FE11C2 /* Italian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Italian; path = Italian.lproj/UndoRedo.strings; sourceTree = "<group>"; };
 		325BFE5C1050DBB900FE11C2 /* Italian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Italian; path = Italian.lproj/Menus.strings; sourceTree = "<group>"; };
-		326D22E412DE468000767B04 /* Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
-		326D22E512DE468000767B04 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		326D22E612DE468000767B04 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		326D252612DE4CF800767B04 /* cdparanoia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = cdparanoia.framework; path = Frameworks/cdparanoia.framework; sourceTree = "<group>"; };
 		326D252812DE4CF800767B04 /* cuetools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = cuetools.framework; path = Frameworks/cuetools.framework; sourceTree = "<group>"; };
 		326D252A12DE4CF800767B04 /* discid.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = discid.framework; path = Frameworks/discid.framework; sourceTree = "<group>"; };
@@ -327,36 +326,6 @@
 		32A147AF104745BD0020238F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		32A14813104747240020238F /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Italian; path = Italian.lproj/Credits.rtf; sourceTree = "<group>"; };
 		32A14823104747240020238F /* Italian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Italian; path = Italian.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		32C614A712E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Acknowledgments.xib; sourceTree = "<group>"; };
-		32C614A912E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/AlbumArtPreferences.xib; sourceTree = "<group>"; };
-		32C614AB12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/AmazonAlbumArtSheet.xib; sourceTree = "<group>"; };
-		32C614AD12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CompactDiscDocument.xib; sourceTree = "<group>"; };
-		32C614AF12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ComponentVersions.xib; sourceTree = "<group>"; };
-		32C614B112E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CoreAudioSettingsSheet.xib; sourceTree = "<group>"; };
-		32C614B312E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/CueSheetDocument.xib; sourceTree = "<group>"; };
-		32C614B512E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Encoder.xib; sourceTree = "<group>"; };
-		32C614B712E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FileConversion.xib; sourceTree = "<group>"; };
-		32C614B912E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FLACSettingsSheet.xib; sourceTree = "<group>"; };
-		32C614BB12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Formats.xib; sourceTree = "<group>"; };
-		32C614BD12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FormatsPreferences.xib; sourceTree = "<group>"; };
-		32C614BF12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/GeneralPreferences.xib; sourceTree = "<group>"; };
-		32C614C112E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/iTunesPreferences.xib; sourceTree = "<group>"; };
-		32C614C312E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LibsndfileSettingsSheet.xib; sourceTree = "<group>"; };
-		32C614C512E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Log.xib; sourceTree = "<group>"; };
-		32C614C712E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		32C614C912E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MonkeysAudioSettingsSheet.xib; sourceTree = "<group>"; };
-		32C614CB12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MP3SettingsSheet.xib; sourceTree = "<group>"; };
-		32C614CD12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MusicBrainzMatchSheet.xib; sourceTree = "<group>"; };
-		32C614CF12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MusicBrainzPreferences.xib; sourceTree = "<group>"; };
-		32C614D112E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/OggSpeexSettingsSheet.xib; sourceTree = "<group>"; };
-		32C614D312E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/OggVorbisSettingsSheet.xib; sourceTree = "<group>"; };
-		32C614D512E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/OutputPreferences.xib; sourceTree = "<group>"; };
-		32C614D712E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PostProcessingPreferences.xib; sourceTree = "<group>"; };
-		32C614D912E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
-		32C614DB12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Ripper.xib; sourceTree = "<group>"; };
-		32C614DD12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/RipperPreferences.xib; sourceTree = "<group>"; };
-		32C614DF12E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/TaggingPreferences.xib; sourceTree = "<group>"; };
-		32C614E112E80CB800F714C9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/WavPackSettingsSheet.xib; sourceTree = "<group>"; };
 		32C6150112E80CDE00F714C9 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Dutch; path = Dutch.lproj/Acknowledgments.xib; sourceTree = "<group>"; };
 		32C6150212E80CDE00F714C9 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Dutch; path = Dutch.lproj/AlbumArtPreferences.xib; sourceTree = "<group>"; };
 		32C6150312E80CDE00F714C9 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Dutch; path = Dutch.lproj/AmazonAlbumArtSheet.xib; sourceTree = "<group>"; };
@@ -505,15 +474,47 @@
 		32C6159212E80D3300F714C9 /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Spanish; path = Spanish.lproj/WavPackSettingsSheet.xib; sourceTree = "<group>"; };
 		32C8F0ED10632AB0004AB74F /* GaplessUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GaplessUtilities.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Max_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Max_Prefix.pch; sourceTree = "<group>"; };
+		49AD17E821A9FB810069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Acknowledgments.xib; sourceTree = "<group>"; };
+		49AD17E921A9FB810069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlbumArtPreferences.xib; sourceTree = "<group>"; };
+		49AD17EA21A9FB810069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AmazonAlbumArtSheet.xib; sourceTree = "<group>"; };
+		49AD17EB21A9FB810069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CompactDiscDocument.xib; sourceTree = "<group>"; };
+		49AD17EC21A9FB810069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ComponentVersions.xib; sourceTree = "<group>"; };
+		49AD17ED21A9FB810069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CoreAudioSettingsSheet.xib; sourceTree = "<group>"; };
+		49AD17EE21A9FB820069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CueSheetDocument.xib; sourceTree = "<group>"; };
+		49AD17EF21A9FB820069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Encoder.xib; sourceTree = "<group>"; };
+		49AD17F021A9FB820069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FileConversion.xib; sourceTree = "<group>"; };
+		49AD17F121A9FB820069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FLACSettingsSheet.xib; sourceTree = "<group>"; };
+		49AD17F221A9FB820069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Formats.xib; sourceTree = "<group>"; };
+		49AD17F321A9FB820069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FormatsPreferences.xib; sourceTree = "<group>"; };
+		49AD17F421A9FB830069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GeneralPreferences.xib; sourceTree = "<group>"; };
+		49AD17F521A9FB830069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/iTunesPreferences.xib; sourceTree = "<group>"; };
+		49AD17F621A9FB830069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LibsndfileSettingsSheet.xib; sourceTree = "<group>"; };
+		49AD17F721A9FB830069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Log.xib; sourceTree = "<group>"; };
+		49AD17F821A9FB830069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		49AD17F921A9FB830069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MonkeysAudioSettingsSheet.xib; sourceTree = "<group>"; };
+		49AD17FA21A9FB830069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MP3SettingsSheet.xib; sourceTree = "<group>"; };
+		49AD17FB21A9FB840069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MusicBrainzMatchSheet.xib; sourceTree = "<group>"; };
+		49AD17FC21A9FB840069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MusicBrainzPreferences.xib; sourceTree = "<group>"; };
+		49AD17FD21A9FB840069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OggSpeexSettingsSheet.xib; sourceTree = "<group>"; };
+		49AD17FE21A9FB840069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OggVorbisSettingsSheet.xib; sourceTree = "<group>"; };
+		49AD17FF21A9FB840069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OutputPreferences.xib; sourceTree = "<group>"; };
+		49AD180021A9FB840069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PostProcessingPreferences.xib; sourceTree = "<group>"; };
+		49AD180121A9FB850069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
+		49AD180221A9FB850069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Ripper.xib; sourceTree = "<group>"; };
+		49AD180321A9FB850069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RipperPreferences.xib; sourceTree = "<group>"; };
+		49AD180421A9FB850069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TaggingPreferences.xib; sourceTree = "<group>"; };
+		49AD180521A9FB850069343E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WavPackSettingsSheet.xib; sourceTree = "<group>"; };
+		5B9FF0E8541D46F636461FC2 /* Pods_Max.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Max.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6213CA779CDD4C0D00A4D882 /* Pods-Max.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Max.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Max/Pods-Max.debug.xcconfig"; sourceTree = "<group>"; };
 		8C0406480B5C582E00648158 /* nb_NO */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = nb_NO; path = nb_NO.lproj/Credits.rtf; sourceTree = "<group>"; };
-		8C0406490B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb_NO; path = nb_NO.lproj/CompactDisc.strings; sourceTree = "<group>"; };
+		8C0406490B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb_NO; path = nb_NO.lproj/CompactDisc.strings; sourceTree = "<group>"; };
 		8C04064A0B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nb_NO; path = nb_NO.lproj/Exceptions.strings; sourceTree = "<group>"; };
 		8C04064B0B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nb_NO; path = nb_NO.lproj/FileConversion.strings; sourceTree = "<group>"; };
 		8C04064C0B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nb_NO; path = nb_NO.lproj/General.strings; sourceTree = "<group>"; };
-		8C04064D0B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb_NO; path = nb_NO.lproj/Genres.strings; sourceTree = "<group>"; };
+		8C04064D0B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb_NO; path = nb_NO.lproj/Genres.strings; sourceTree = "<group>"; };
 		8C04064F0B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nb_NO; path = nb_NO.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8C0406500B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nb_NO; path = nb_NO.lproj/Log.strings; sourceTree = "<group>"; };
-		8C0406510B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb_NO; path = nb_NO.lproj/Preferences.strings; sourceTree = "<group>"; };
+		8C0406510B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb_NO; path = nb_NO.lproj/Preferences.strings; sourceTree = "<group>"; };
 		8C0406520B5C584000648158 /* nb_NO */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nb_NO; path = nb_NO.lproj/UndoRedo.strings; sourceTree = "<group>"; };
 		8C05F1800CC2DAA1006E5746 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Frameworks/Growl.framework; sourceTree = "<group>"; };
 		8C05F1810CC2DAA1006E5746 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
@@ -867,12 +868,21 @@
 				326D254312DE4CF800767B04 /* taglib.framework in Frameworks */,
 				326D254512DE4CF800767B04 /* vorbis.framework in Frameworks */,
 				326D254712DE4CF800767B04 /* wavpack.framework in Frameworks */,
+				253EEBA74A90127E627CC2C9 /* Pods_Max.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E50839E644D31E0945DA62E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B9FF0E8541D46F636461FC2 /* Pods_Max.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,7 +912,6 @@
 		29B97314FDCFA39411CA2CEA /* cocoa test */ = {
 			isa = PBXGroup;
 			children = (
-				326D22E312DE466D00767B04 /* Configs */,
 				8C53022A0A05D6D800890518 /* Drive */,
 				8C9451350A12E4D700C8DCAE /* CompactDisc */,
 				8C94512C0A12E45B00C8DCAE /* CueSheet */,
@@ -934,6 +943,8 @@
 				29B97323FDCFA39411CA2CEA /* System Frameworks */,
 				8CEA08B70AC78374009E46CB /* External Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				5C967363DFCDA4B9A54DB7A3 /* Pods */,
+				0E50839E644D31E0945DA62E /* Frameworks */,
 			);
 			name = "cocoa test";
 			sourceTree = "<group>";
@@ -1006,14 +1017,13 @@
 			name = "System Frameworks";
 			sourceTree = "<group>";
 		};
-		326D22E312DE466D00767B04 /* Configs */ = {
+		5C967363DFCDA4B9A54DB7A3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				326D22E412DE468000767B04 /* Base.xcconfig */,
-				326D22E512DE468000767B04 /* Debug.xcconfig */,
-				326D22E612DE468000767B04 /* Release.xcconfig */,
+				6213CA779CDD4C0D00A4D882 /* Pods-Max.debug.xcconfig */,
+				1DC1094139AE09B3CBE5E796 /* Pods-Max.release.xcconfig */,
 			);
-			path = Configs;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		8C0883570A092EA500CAC5D0 /* Defaults */ = {
@@ -1500,10 +1510,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C1919DE08C50B7A00CB7453 /* Build configuration list for PBXNativeTarget "Max" */;
 			buildPhases = (
+				88902DC0AF57A45D14487E73 /* [CP] Check Pods Manifest.lock */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				8C9A24AC0925ACF400FB244D /* Copy Frameworks */,
+				F47F40FDB9D82E682836DFFD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1521,7 +1533,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = sbooth.org;
 			};
 			buildConfigurationList = 8C1919E208C50B7A00CB7453 /* Build configuration list for PBXProject "Max" */;
@@ -1537,8 +1549,10 @@
 				nb_NO,
 				Spanish,
 				Italian,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* cocoa test */;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1640,6 +1654,55 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		88902DC0AF57A45D14487E73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Max-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F47F40FDB9D82E682836DFFD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Max/Pods-Max-frameworks.sh",
+				"${PODS_ROOT}/Sparkle/Sparkle.framework",
+				"${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Sparkle.framework.dSYM",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Max/Pods-Max-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
@@ -1794,12 +1857,12 @@
 		32C614A612E80CB800F714C9 /* Acknowledgments.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614A712E80CB800F714C9 /* English */,
 				32C6150112E80CDE00F714C9 /* Dutch */,
 				32C6151F12E80CF600F714C9 /* French */,
 				32C6153D12E80D0700F714C9 /* German */,
 				32C6155B12E80D1A00F714C9 /* Italian */,
 				32C6157512E80D3300F714C9 /* Spanish */,
+				49AD17E821A9FB810069343E /* Base */,
 			);
 			name = Acknowledgments.xib;
 			sourceTree = "<group>";
@@ -1807,12 +1870,12 @@
 		32C614A812E80CB800F714C9 /* AlbumArtPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614A912E80CB800F714C9 /* English */,
 				32C6150212E80CDE00F714C9 /* Dutch */,
 				32C6152012E80CF600F714C9 /* French */,
 				32C6153E12E80D0700F714C9 /* German */,
 				32C6155C12E80D1A00F714C9 /* Italian */,
 				32C6157612E80D3300F714C9 /* Spanish */,
+				49AD17E921A9FB810069343E /* Base */,
 			);
 			name = AlbumArtPreferences.xib;
 			sourceTree = "<group>";
@@ -1820,12 +1883,12 @@
 		32C614AA12E80CB800F714C9 /* AmazonAlbumArtSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614AB12E80CB800F714C9 /* English */,
 				32C6150312E80CDE00F714C9 /* Dutch */,
 				32C6152112E80CF600F714C9 /* French */,
 				32C6153F12E80D0700F714C9 /* German */,
 				32C6155D12E80D1A00F714C9 /* Italian */,
 				32C6157712E80D3300F714C9 /* Spanish */,
+				49AD17EA21A9FB810069343E /* Base */,
 			);
 			name = AmazonAlbumArtSheet.xib;
 			sourceTree = "<group>";
@@ -1833,12 +1896,12 @@
 		32C614AC12E80CB800F714C9 /* CompactDiscDocument.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614AD12E80CB800F714C9 /* English */,
 				32C6150412E80CDE00F714C9 /* Dutch */,
 				32C6152212E80CF600F714C9 /* French */,
 				32C6154012E80D0700F714C9 /* German */,
 				32C6155E12E80D1A00F714C9 /* Italian */,
 				32C6157812E80D3300F714C9 /* Spanish */,
+				49AD17EB21A9FB810069343E /* Base */,
 			);
 			name = CompactDiscDocument.xib;
 			sourceTree = "<group>";
@@ -1846,12 +1909,12 @@
 		32C614AE12E80CB800F714C9 /* ComponentVersions.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614AF12E80CB800F714C9 /* English */,
 				32C6150512E80CDE00F714C9 /* Dutch */,
 				32C6152312E80CF600F714C9 /* French */,
 				32C6154112E80D0700F714C9 /* German */,
 				32C6155F12E80D1A00F714C9 /* Italian */,
 				32C6157912E80D3300F714C9 /* Spanish */,
+				49AD17EC21A9FB810069343E /* Base */,
 			);
 			name = ComponentVersions.xib;
 			sourceTree = "<group>";
@@ -1859,12 +1922,12 @@
 		32C614B012E80CB800F714C9 /* CoreAudioSettingsSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614B112E80CB800F714C9 /* English */,
 				32C6150612E80CDE00F714C9 /* Dutch */,
 				32C6152412E80CF600F714C9 /* French */,
 				32C6154212E80D0700F714C9 /* German */,
 				32C6156012E80D1A00F714C9 /* Italian */,
 				32C6157A12E80D3300F714C9 /* Spanish */,
+				49AD17ED21A9FB810069343E /* Base */,
 			);
 			name = CoreAudioSettingsSheet.xib;
 			sourceTree = "<group>";
@@ -1872,12 +1935,12 @@
 		32C614B212E80CB800F714C9 /* CueSheetDocument.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614B312E80CB800F714C9 /* English */,
 				32C6150712E80CDE00F714C9 /* Dutch */,
 				32C6152512E80CF600F714C9 /* French */,
 				32C6154312E80D0700F714C9 /* German */,
 				32C6156112E80D1A00F714C9 /* Italian */,
 				32C6157B12E80D3300F714C9 /* Spanish */,
+				49AD17EE21A9FB820069343E /* Base */,
 			);
 			name = CueSheetDocument.xib;
 			sourceTree = "<group>";
@@ -1885,12 +1948,12 @@
 		32C614B412E80CB800F714C9 /* Encoder.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614B512E80CB800F714C9 /* English */,
 				32C6150812E80CDE00F714C9 /* Dutch */,
 				32C6152612E80CF600F714C9 /* French */,
 				32C6154412E80D0700F714C9 /* German */,
 				32C6156212E80D1A00F714C9 /* Italian */,
 				32C6157C12E80D3300F714C9 /* Spanish */,
+				49AD17EF21A9FB820069343E /* Base */,
 			);
 			name = Encoder.xib;
 			sourceTree = "<group>";
@@ -1898,12 +1961,12 @@
 		32C614B612E80CB800F714C9 /* FileConversion.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614B712E80CB800F714C9 /* English */,
 				32C6150912E80CDE00F714C9 /* Dutch */,
 				32C6152712E80CF600F714C9 /* French */,
 				32C6154512E80D0700F714C9 /* German */,
 				32C6156312E80D1A00F714C9 /* Italian */,
 				32C6157D12E80D3300F714C9 /* Spanish */,
+				49AD17F021A9FB820069343E /* Base */,
 			);
 			name = FileConversion.xib;
 			sourceTree = "<group>";
@@ -1911,12 +1974,12 @@
 		32C614B812E80CB800F714C9 /* FLACSettingsSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614B912E80CB800F714C9 /* English */,
 				32C6150A12E80CDE00F714C9 /* Dutch */,
 				32C6152812E80CF600F714C9 /* French */,
 				32C6154612E80D0700F714C9 /* German */,
 				32C6156412E80D1A00F714C9 /* Italian */,
 				32C6157E12E80D3300F714C9 /* Spanish */,
+				49AD17F121A9FB820069343E /* Base */,
 			);
 			name = FLACSettingsSheet.xib;
 			sourceTree = "<group>";
@@ -1924,12 +1987,12 @@
 		32C614BA12E80CB800F714C9 /* Formats.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614BB12E80CB800F714C9 /* English */,
 				32C6150B12E80CDE00F714C9 /* Dutch */,
 				32C6152912E80CF600F714C9 /* French */,
 				32C6154712E80D0700F714C9 /* German */,
 				32C6156512E80D1A00F714C9 /* Italian */,
 				32C6157F12E80D3300F714C9 /* Spanish */,
+				49AD17F221A9FB820069343E /* Base */,
 			);
 			name = Formats.xib;
 			sourceTree = "<group>";
@@ -1937,12 +2000,12 @@
 		32C614BC12E80CB800F714C9 /* FormatsPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614BD12E80CB800F714C9 /* English */,
 				32C6150C12E80CDE00F714C9 /* Dutch */,
 				32C6152A12E80CF600F714C9 /* French */,
 				32C6154812E80D0700F714C9 /* German */,
 				32C6156612E80D1A00F714C9 /* Italian */,
 				32C6158012E80D3300F714C9 /* Spanish */,
+				49AD17F321A9FB820069343E /* Base */,
 			);
 			name = FormatsPreferences.xib;
 			sourceTree = "<group>";
@@ -1950,12 +2013,12 @@
 		32C614BE12E80CB800F714C9 /* GeneralPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614BF12E80CB800F714C9 /* English */,
 				32C6150D12E80CDE00F714C9 /* Dutch */,
 				32C6152B12E80CF600F714C9 /* French */,
 				32C6154912E80D0700F714C9 /* German */,
 				32C6156712E80D1A00F714C9 /* Italian */,
 				32C6158112E80D3300F714C9 /* Spanish */,
+				49AD17F421A9FB830069343E /* Base */,
 			);
 			name = GeneralPreferences.xib;
 			sourceTree = "<group>";
@@ -1963,12 +2026,12 @@
 		32C614C012E80CB800F714C9 /* iTunesPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614C112E80CB800F714C9 /* English */,
 				32C6150E12E80CDE00F714C9 /* Dutch */,
 				32C6152C12E80CF600F714C9 /* French */,
 				32C6154A12E80D0700F714C9 /* German */,
 				32C6156812E80D1A00F714C9 /* Italian */,
 				32C6158212E80D3300F714C9 /* Spanish */,
+				49AD17F521A9FB830069343E /* Base */,
 			);
 			name = iTunesPreferences.xib;
 			sourceTree = "<group>";
@@ -1976,12 +2039,12 @@
 		32C614C212E80CB800F714C9 /* LibsndfileSettingsSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614C312E80CB800F714C9 /* English */,
 				32C6150F12E80CDE00F714C9 /* Dutch */,
 				32C6152D12E80CF600F714C9 /* French */,
 				32C6154B12E80D0700F714C9 /* German */,
 				32C6156912E80D1A00F714C9 /* Italian */,
 				32C6158312E80D3300F714C9 /* Spanish */,
+				49AD17F621A9FB830069343E /* Base */,
 			);
 			name = LibsndfileSettingsSheet.xib;
 			sourceTree = "<group>";
@@ -1989,12 +2052,12 @@
 		32C614C412E80CB800F714C9 /* Log.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614C512E80CB800F714C9 /* English */,
 				32C6151012E80CDE00F714C9 /* Dutch */,
 				32C6152E12E80CF600F714C9 /* French */,
 				32C6154C12E80D0700F714C9 /* German */,
 				32C6156A12E80D1B00F714C9 /* Italian */,
 				32C6158412E80D3300F714C9 /* Spanish */,
+				49AD17F721A9FB830069343E /* Base */,
 			);
 			name = Log.xib;
 			sourceTree = "<group>";
@@ -2002,12 +2065,12 @@
 		32C614C612E80CB800F714C9 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614C712E80CB800F714C9 /* English */,
 				32C6151112E80CDE00F714C9 /* Dutch */,
 				32C6152F12E80CF600F714C9 /* French */,
 				32C6154D12E80D0700F714C9 /* German */,
 				32C6156B12E80D1B00F714C9 /* Italian */,
 				32C6158512E80D3300F714C9 /* Spanish */,
+				49AD17F821A9FB830069343E /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -2015,12 +2078,12 @@
 		32C614C812E80CB800F714C9 /* MonkeysAudioSettingsSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614C912E80CB800F714C9 /* English */,
 				32C6151212E80CDE00F714C9 /* Dutch */,
 				32C6153012E80CF600F714C9 /* French */,
 				32C6154E12E80D0700F714C9 /* German */,
 				32C6156C12E80D1B00F714C9 /* Italian */,
 				32C6158612E80D3300F714C9 /* Spanish */,
+				49AD17F921A9FB830069343E /* Base */,
 			);
 			name = MonkeysAudioSettingsSheet.xib;
 			sourceTree = "<group>";
@@ -2028,11 +2091,11 @@
 		32C614CA12E80CB800F714C9 /* MP3SettingsSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614CB12E80CB800F714C9 /* English */,
 				32C6151312E80CDE00F714C9 /* Dutch */,
 				32C6153112E80CF600F714C9 /* French */,
 				32C6154F12E80D0700F714C9 /* German */,
 				32C6158712E80D3300F714C9 /* Spanish */,
+				49AD17FA21A9FB830069343E /* Base */,
 			);
 			name = MP3SettingsSheet.xib;
 			sourceTree = "<group>";
@@ -2040,11 +2103,11 @@
 		32C614CC12E80CB800F714C9 /* MusicBrainzMatchSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614CD12E80CB800F714C9 /* English */,
 				32C6151412E80CDE00F714C9 /* Dutch */,
 				32C6153212E80CF600F714C9 /* French */,
 				32C6155012E80D0700F714C9 /* German */,
 				32C6158812E80D3300F714C9 /* Spanish */,
+				49AD17FB21A9FB840069343E /* Base */,
 			);
 			name = MusicBrainzMatchSheet.xib;
 			sourceTree = "<group>";
@@ -2052,12 +2115,12 @@
 		32C614CE12E80CB800F714C9 /* MusicBrainzPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614CF12E80CB800F714C9 /* English */,
 				32C6151512E80CDE00F714C9 /* Dutch */,
 				32C6153312E80CF600F714C9 /* French */,
 				32C6155112E80D0700F714C9 /* German */,
 				32C6156D12E80D1B00F714C9 /* Italian */,
 				32C6158912E80D3300F714C9 /* Spanish */,
+				49AD17FC21A9FB840069343E /* Base */,
 			);
 			name = MusicBrainzPreferences.xib;
 			sourceTree = "<group>";
@@ -2065,12 +2128,12 @@
 		32C614D012E80CB800F714C9 /* OggSpeexSettingsSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614D112E80CB800F714C9 /* English */,
 				32C6151612E80CDE00F714C9 /* Dutch */,
 				32C6153412E80CF600F714C9 /* French */,
 				32C6155212E80D0700F714C9 /* German */,
 				32C6156E12E80D1B00F714C9 /* Italian */,
 				32C6158A12E80D3300F714C9 /* Spanish */,
+				49AD17FD21A9FB840069343E /* Base */,
 			);
 			name = OggSpeexSettingsSheet.xib;
 			sourceTree = "<group>";
@@ -2078,12 +2141,12 @@
 		32C614D212E80CB800F714C9 /* OggVorbisSettingsSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614D312E80CB800F714C9 /* English */,
 				32C6151712E80CDE00F714C9 /* Dutch */,
 				32C6153512E80CF600F714C9 /* French */,
 				32C6155312E80D0700F714C9 /* German */,
 				32C6156F12E80D1B00F714C9 /* Italian */,
 				32C6158B12E80D3300F714C9 /* Spanish */,
+				49AD17FE21A9FB840069343E /* Base */,
 			);
 			name = OggVorbisSettingsSheet.xib;
 			sourceTree = "<group>";
@@ -2091,11 +2154,11 @@
 		32C614D412E80CB800F714C9 /* OutputPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614D512E80CB800F714C9 /* English */,
 				32C6151812E80CDE00F714C9 /* Dutch */,
 				32C6153612E80CF600F714C9 /* French */,
 				32C6155412E80D0700F714C9 /* German */,
 				32C6158C12E80D3300F714C9 /* Spanish */,
+				49AD17FF21A9FB840069343E /* Base */,
 			);
 			name = OutputPreferences.xib;
 			sourceTree = "<group>";
@@ -2103,11 +2166,11 @@
 		32C614D612E80CB800F714C9 /* PostProcessingPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614D712E80CB800F714C9 /* English */,
 				32C6151912E80CDE00F714C9 /* Dutch */,
 				32C6153712E80CF600F714C9 /* French */,
 				32C6155512E80D0700F714C9 /* German */,
 				32C6158D12E80D3300F714C9 /* Spanish */,
+				49AD180021A9FB840069343E /* Base */,
 			);
 			name = PostProcessingPreferences.xib;
 			sourceTree = "<group>";
@@ -2115,12 +2178,12 @@
 		32C614D812E80CB800F714C9 /* Preferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614D912E80CB800F714C9 /* English */,
 				32C6151A12E80CDE00F714C9 /* Dutch */,
 				32C6153812E80CF600F714C9 /* French */,
 				32C6155612E80D0700F714C9 /* German */,
 				32C6157012E80D1B00F714C9 /* Italian */,
 				32C6158E12E80D3300F714C9 /* Spanish */,
+				49AD180121A9FB850069343E /* Base */,
 			);
 			name = Preferences.xib;
 			sourceTree = "<group>";
@@ -2128,12 +2191,12 @@
 		32C614DA12E80CB800F714C9 /* Ripper.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614DB12E80CB800F714C9 /* English */,
 				32C6151B12E80CDE00F714C9 /* Dutch */,
 				32C6153912E80CF600F714C9 /* French */,
 				32C6155712E80D0700F714C9 /* German */,
 				32C6157112E80D1B00F714C9 /* Italian */,
 				32C6158F12E80D3300F714C9 /* Spanish */,
+				49AD180221A9FB850069343E /* Base */,
 			);
 			name = Ripper.xib;
 			sourceTree = "<group>";
@@ -2141,12 +2204,12 @@
 		32C614DC12E80CB800F714C9 /* RipperPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614DD12E80CB800F714C9 /* English */,
 				32C6151C12E80CDE00F714C9 /* Dutch */,
 				32C6153A12E80CF600F714C9 /* French */,
 				32C6155812E80D0700F714C9 /* German */,
 				32C6157212E80D1B00F714C9 /* Italian */,
 				32C6159012E80D3300F714C9 /* Spanish */,
+				49AD180321A9FB850069343E /* Base */,
 			);
 			name = RipperPreferences.xib;
 			sourceTree = "<group>";
@@ -2154,12 +2217,12 @@
 		32C614DE12E80CB800F714C9 /* TaggingPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614DF12E80CB800F714C9 /* English */,
 				32C6151D12E80CDE00F714C9 /* Dutch */,
 				32C6153B12E80CF600F714C9 /* French */,
 				32C6155912E80D0700F714C9 /* German */,
 				32C6157312E80D1B00F714C9 /* Italian */,
 				32C6159112E80D3300F714C9 /* Spanish */,
+				49AD180421A9FB850069343E /* Base */,
 			);
 			name = TaggingPreferences.xib;
 			sourceTree = "<group>";
@@ -2167,12 +2230,12 @@
 		32C614E012E80CB800F714C9 /* WavPackSettingsSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				32C614E112E80CB800F714C9 /* English */,
 				32C6151E12E80CDE00F714C9 /* Dutch */,
 				32C6153C12E80CF600F714C9 /* French */,
 				32C6155A12E80D0700F714C9 /* German */,
 				32C6157412E80D1B00F714C9 /* Italian */,
 				32C6159212E80D3300F714C9 /* Spanish */,
+				49AD180521A9FB850069343E /* Base */,
 			);
 			name = WavPackSettingsSheet.xib;
 			sourceTree = "<group>";
@@ -2325,40 +2388,41 @@
 /* Begin XCBuildConfiguration section */
 		8C1919DF08C50B7A00CB7453 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 326D22E512DE468000767B04 /* Debug.xcconfig */;
+			baseConfigurationReference = 6213CA779CDD4C0D00A4D882 /* Pods-Max.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 4SPHDMZQP6;
+				DEVELOPMENT_TEAM = TFP8N9ZDZ5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sbooth.Max;
 				PRODUCT_NAME = Max;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = /usr/local/include;
 			};
 			name = Debug;
 		};
 		8C1919E008C50B7A00CB7453 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 326D22E612DE468000767B04 /* Release.xcconfig */;
+			baseConfigurationReference = 1DC1094139AE09B3CBE5E796 /* Pods-Max.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4SPHDMZQP6;
+				DEVELOPMENT_TEAM = TFP8N9ZDZ5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
@@ -2366,10 +2430,11 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sbooth.Max;
 				PRODUCT_NAME = Max;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
 			name = Release;
 		};
