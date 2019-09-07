@@ -22,7 +22,7 @@
 #import "Decoder.h"
 
 #define HAVE_STRERROR
-#include <shorten/decode.h>
+#include <decode.h>
 
 @interface ShortenDecoder : Decoder
 {

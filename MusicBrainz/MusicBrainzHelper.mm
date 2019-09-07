@@ -20,10 +20,10 @@
 
 #import "MusicBrainzHelper.h"
 
-#include <musicbrainz3/webservice.h>
-#include <musicbrainz3/query.h>
-#include <musicbrainz3/model.h>
-#include <musicbrainz3/utils.h>
+// #include <musicbrainz5/webservice.h>
+// #include <musicbrainz5/Query.h>
+// #include <musicbrainz5/model.h>
+// #include <musicbrainz5/utils.h>
 
 #import "CompactDiscDocument.h"
 

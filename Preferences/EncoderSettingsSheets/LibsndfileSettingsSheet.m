@@ -20,7 +20,7 @@
 
 #import "LibsndfileSettingsSheet.h"
 
-#include <sndfile/sndfile.h>
+#include <sndfile.h>
 
 @implementation LibsndfileSettingsSheet
 

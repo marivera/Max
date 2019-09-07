@@ -31,7 +31,7 @@
 #import "MediaController.h"
 #import "UtilityFunctions.h"
 
-#import <Growl/GrowlApplicationBridge.h>
+// #import <Growl/GrowlApplicationBridge.h>
 
 #include <paths.h>			// _PATH_TMP
 #include <sys/param.h>		// statfs
@@ -247,8 +247,10 @@ static RipperController *sharedController = nil;
 	NSString *trackName = [task description];
 	
 	[LogController logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Rip started for %@", @"Log", @""), trackName]];
+#if 0
 	[GrowlApplicationBridge notifyWithTitle:NSLocalizedStringFromTable(@"Rip started", @"Log", @"") description:trackName
 						   notificationName:@"Rip started" iconData:nil priority:0 isSticky:NO clickContext:nil];
+#endif
 }
 
 - (void) ripperTaskDidStop:(RipperTask *)task
@@ -256,8 +258,10 @@ static RipperController *sharedController = nil;
 	NSString *trackName = [task description];
 		
 	[LogController logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Rip stopped for %@", @"Log", @""), trackName]];
+#if 0
 	[GrowlApplicationBridge notifyWithTitle:NSLocalizedStringFromTable(@"Rip stopped", @"Log", @"") description:trackName
 						   notificationName:@"Rip stopped" iconData:nil priority:0 isSticky:NO clickContext:nil];
+#endif
 
 	[task retain];
 
@@ -283,9 +287,11 @@ static RipperController *sharedController = nil;
 	BOOL			justNotified	= NO;
 	
 	[LogController logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Rip completed for %@", @"Log", @""), trackName]];
+#if 0
 	[GrowlApplicationBridge notifyWithTitle:NSLocalizedStringFromTable(@"Rip completed", @"Log", @"") 
 								description:[NSString stringWithFormat:@"%@\n%@", trackName, [NSString stringWithFormat:NSLocalizedStringFromTable(@"Duration: %@", @"Log", @""), duration]]
 						   notificationName:@"Rip completed" iconData:nil priority:0 isSticky:NO clickContext:nil];
+#endif
 		
 	[task retain];
 
@@ -293,16 +299,20 @@ static RipperController *sharedController = nil;
 	[self spawnThreads];
 
 	if(NO == [[[task objectInTracksAtIndex:0] document] ripInProgress]) {
+#if 0
 		[GrowlApplicationBridge notifyWithTitle:NSLocalizedStringFromTable(@"Disc ripping completed", @"Log", @"")
 									description:[NSString stringWithFormat:NSLocalizedStringFromTable(@"All ripping tasks completed for %@", @"Log", @""), [[[task taskInfo] metadata] albumTitle]]
 							   notificationName:@"Disc ripping completed" iconData:nil priority:0 isSticky:NO clickContext:nil];
+#endif
 		justNotified = YES;
 	}
 	
 	if(NO == [self hasTasks] && NO == justNotified) {
+#if 0
 		[GrowlApplicationBridge notifyWithTitle:NSLocalizedStringFromTable(@"Ripping completed", @"Log", @"")
 									description:NSLocalizedStringFromTable(@"All ripping tasks completed", @"Log", @"")
 							   notificationName:@"Ripping completed" iconData:nil priority:0 isSticky:NO clickContext:nil];
+#endif
 	}
 	
 	if([[NSUserDefaults standardUserDefaults] boolForKey:@"ejectAfterRipping"] && NO == [self documentHasRipperTasks:[[task objectInTracksAtIndex:0] document]]) {

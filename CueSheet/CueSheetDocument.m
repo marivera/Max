@@ -32,7 +32,7 @@
 #include <discid/discid.h>
 
 #include <cuetools/cd.h>
-#include <cuetools/cue.h>
+#include <cuetools/cuefile.h>
 
 #include <FLAC/metadata.h>
 
@@ -164,7 +164,7 @@
 										userInfo:[NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Unable to open the input file.", @"Exceptions", @"") forKey:NSLocalizedFailureReasonErrorKey]];
 			return NO;
 		}
-		
+        Cd *cue_parse(FILE *);
 		Cd *cd = cue_parse(f);
 		if(NULL == cd) {
 			fclose(f);

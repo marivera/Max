@@ -21,7 +21,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Decoder.h"
 
-#include <sndfile/sndfile.h>
+#include <sndfile.h>
 
 @interface LibsndfileDecoder : Decoder
 {

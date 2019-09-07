@@ -21,7 +21,7 @@
 #import <Cocoa/Cocoa.h>
 #import "Decoder.h"
 
-#include <mad/mad.h>
+#include <mad.h>
 
 @interface MPEGDecoder : Decoder
 {

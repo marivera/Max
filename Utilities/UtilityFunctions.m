@@ -27,7 +27,7 @@
 
 #include <sys/param.h>
 
-#include <sndfile/sndfile.h>
+#include <sndfile.h>
 #include <ogg/ogg.h>
 
 #include <FLAC/metadata.h>

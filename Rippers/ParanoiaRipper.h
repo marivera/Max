@@ -20,8 +20,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-#include <cdparanoia/cdda_interface.h>
-#include <cdparanoia/cdda_paranoia.h>
+#include <cdda_interface.h>
+#include <cdda_paranoia.h>
 
 #import "Ripper.h"
 

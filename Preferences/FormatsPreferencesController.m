@@ -35,7 +35,7 @@
 #import "MP3SettingsSheet.h"
 #import "OggSpeexSettingsSheet.h"
 
-#include <sndfile/sndfile.h>
+#include <sndfile.h>
 
 @interface FormatsPreferencesController (Private)
 - (void)	didEndSettingsSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;

@@ -271,7 +271,7 @@ callback(long inpos, int function, void *userdata)
 	while(cursor <= lastSector) {
 		
 		// Read a chunk
-		buf = paranoia_read_limited(_paranoia, callback, self, (-1 == _maximumRetries ? 20 : _maximumRetries));
+		buf = paranoia_read_limited(_paranoia, callback, (-1 == _maximumRetries ? 20 : _maximumRetries));
 		NSAssert(NULL != buf, NSLocalizedStringFromTable(@"The skip tolerance was exceeded.", @"Exceptions", @""));
 		
 		// Put the data in an AudioBufferList

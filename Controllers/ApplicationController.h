@@ -20,15 +20,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import <Growl/GrowlApplicationBridge.h>
+// #import <Growl/GrowlApplicationBridge.h>
 
 @interface NSApplication (ScriptingAdditions)
 - (id) handleConvertScriptCommand:(NSScriptCommand *)command;
 @end
 
-@interface ApplicationController : NSObject <GrowlApplicationBridgeDelegate>
+@interface ApplicationController : NSObject /* <GrowlApplicationBridgeDelegate> */
 {
 }
+
 
 + (ApplicationController *)		sharedController;
 
