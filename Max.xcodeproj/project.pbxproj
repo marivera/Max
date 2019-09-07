@@ -175,7 +175,6 @@
 		8C89CA770A06F7B200359E67 /* FLACSettingsSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C89CA710A06F7B200359E67 /* FLACSettingsSheet.m */; };
 		8C89CA880A06F7FD00359E67 /* LibsndfileSettingsSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C89CA860A06F7FD00359E67 /* LibsndfileSettingsSheet.m */; };
 		8C89CB8F0A07180300359E67 /* CoreAudioSettingsSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C89CB8D0A07180300359E67 /* CoreAudioSettingsSheet.m */; };
-		8C89CF860A07521E00359E67 /* WavPackSettingsSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C89CF840A07521E00359E67 /* WavPackSettingsSheet.m */; };
 		8C89D01C0A075BB600359E67 /* OggVorbisSettingsSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C89D01A0A075BB600359E67 /* OggVorbisSettingsSheet.m */; };
 		8C89D0640A075EF500359E67 /* MP3SettingsSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C89D0620A075EF500359E67 /* MP3SettingsSheet.m */; };
 		8C8B0CCF092E5DAA00418C45 /* Max Help in Resources */ = {isa = PBXBuildFile; fileRef = 8C8B0CC1092E5DAA00418C45 /* Max Help */; };
@@ -679,8 +678,6 @@
 		8C89CA860A06F7FD00359E67 /* LibsndfileSettingsSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibsndfileSettingsSheet.m; sourceTree = "<group>"; };
 		8C89CB8C0A07180300359E67 /* CoreAudioSettingsSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreAudioSettingsSheet.h; sourceTree = "<group>"; };
 		8C89CB8D0A07180300359E67 /* CoreAudioSettingsSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreAudioSettingsSheet.m; sourceTree = "<group>"; };
-		8C89CF830A07521E00359E67 /* WavPackSettingsSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavPackSettingsSheet.h; sourceTree = "<group>"; };
-		8C89CF840A07521E00359E67 /* WavPackSettingsSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavPackSettingsSheet.m; sourceTree = "<group>"; };
 		8C89D0190A075BB600359E67 /* OggVorbisSettingsSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OggVorbisSettingsSheet.h; sourceTree = "<group>"; };
 		8C89D01A0A075BB600359E67 /* OggVorbisSettingsSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OggVorbisSettingsSheet.m; sourceTree = "<group>"; };
 		8C89D0610A075EF500359E67 /* MP3SettingsSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MP3SettingsSheet.h; sourceTree = "<group>"; };
@@ -1290,8 +1287,6 @@
 				8C89CA860A06F7FD00359E67 /* LibsndfileSettingsSheet.m */,
 				8C89CB8C0A07180300359E67 /* CoreAudioSettingsSheet.h */,
 				8C89CB8D0A07180300359E67 /* CoreAudioSettingsSheet.m */,
-				8C89CF830A07521E00359E67 /* WavPackSettingsSheet.h */,
-				8C89CF840A07521E00359E67 /* WavPackSettingsSheet.m */,
 				8C89D0190A075BB600359E67 /* OggVorbisSettingsSheet.h */,
 				8C89D01A0A075BB600359E67 /* OggVorbisSettingsSheet.m */,
 				8C89D0610A075EF500359E67 /* MP3SettingsSheet.h */,
@@ -1645,7 +1640,6 @@
 				8C89CA770A06F7B200359E67 /* FLACSettingsSheet.m in Sources */,
 				8C89CA880A06F7FD00359E67 /* LibsndfileSettingsSheet.m in Sources */,
 				8C89CB8F0A07180300359E67 /* CoreAudioSettingsSheet.m in Sources */,
-				8C89CF860A07521E00359E67 /* WavPackSettingsSheet.m in Sources */,
 				8C89D01C0A075BB600359E67 /* OggVorbisSettingsSheet.m in Sources */,
 				8C89D0640A075EF500359E67 /* MP3SettingsSheet.m in Sources */,
 				8C74F84A0A0B2C7C002260CF /* AudioMetadata.mm in Sources */,
