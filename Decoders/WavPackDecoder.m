@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -51,7 +49,8 @@
 
 - (void) dealloc
 {
-	WavpackCloseFile(_wpc), _wpc = NULL;
+	WavpackCloseFile(_wpc);
+	_wpc = NULL;
 	
 	[super dealloc];
 }
@@ -62,7 +61,7 @@
 
 - (SInt64) seekToFrame:(SInt64)frame
 {
-	if(WavpackSeekSample(_wpc, frame)) {
+	if(WavpackSeekSample(_wpc, (uint32_t)frame)) {
 		[[self pcmBuffer] reset]; 
 		_currentFrame = frame; 
 	}

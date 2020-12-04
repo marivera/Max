@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,22 +18,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class MusicBrainzHelperData;
+NS_ASSUME_NONNULL_BEGIN
 
-@interface MusicBrainzHelper : NSObject
-{
-	NSString					*_discID;
-	MusicBrainzHelperData		*_data;
-	NSMutableArray				*_matches;
-}
+void PerformMusicBrainzQuery(NSString *discID, void (^completionHandler)(NSArray * _Nullable, NSError * _Nullable));
+void PerformCoverArtArchiveQuery(NSString *releaseID, void (^completionHandler)(NSImage * _Nullable, NSError * _Nullable));
 
-- (id) initWithDiscID:(NSString *)discID;
-
-// Hits the server for the requested disc
-- (IBAction) performQuery:(id)sender;
-
-// Number of matches found for the disc
-- (NSUInteger) matchCount;
-- (NSDictionary *) matchAtIndex:(NSUInteger)matchIndex;
-
-@end
+NS_ASSUME_NONNULL_END

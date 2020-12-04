@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -42,14 +40,14 @@
 
 	
 	if((self = [super initWithNibName:@"CoreAudioSettingsSheet" settings:settings])) {
-		coreAudioFormats	= getCoreAudioWritableTypes();
+		coreAudioFormats	= GetCoreAudioWritableTypes();
 
 		fileType			= (AudioFileTypeID)[[settings objectForKey:@"fileType"] unsignedLongValue];
 		formatID			= (UInt32)[[settings objectForKey:@"formatID"] unsignedLongValue];
 		formatFlags			= (UInt32)[[settings objectForKey:@"formatFlags"] unsignedLongValue];
 		bitsPerChannel		= (UInt32)[[settings objectForKey:@"bitsPerChannel"] unsignedLongValue];
 
-		[self setFormatName:getCoreAudioOutputFormatName(fileType, formatID, 0)];
+		[self setFormatName:GetCoreAudioOutputFormatName(fileType, formatID, 0)];
 
 		// Iterate through each CoreAudio file type and find the one matching ours
 		for(i = 0; i < [coreAudioFormats count]; ++i) {
@@ -91,8 +89,10 @@
 
 - (void) dealloc
 {
-	[_availableSubtypes release],	_availableSubtypes = nil;
-	[_formatName release],			_formatName = nil;
+	[_availableSubtypes release];
+	_availableSubtypes = nil;
+	[_formatName release];
+	_formatName = nil;
 	
 	[super dealloc];
 }
@@ -162,7 +162,7 @@
 	formatID			= (UInt32)[[subtypeInfo objectForKey:@"formatID"] unsignedLongValue];
 	formatFlags			= (UInt32)[[subtypeInfo objectForKey:@"formatFlags"] unsignedLongValue];
 
-	[self setFormatName:getCoreAudioOutputFormatName(fileType, formatID, formatFlags)];
+	[self setFormatName:GetCoreAudioOutputFormatName(fileType, formatID, formatFlags)];
 
 	// Add the subtype information to our settings	
 	

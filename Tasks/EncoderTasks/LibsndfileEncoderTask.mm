@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2009 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -148,7 +146,7 @@
 	NSString									*musicbrainzArtistId		= nil;
 	NSString									*musicbrainzAlbumArtistId	= nil;
 	NSString									*musicbrainzTrackId			= nil;
-	unsigned									index						= NSNotFound;
+	NSInteger									index						= NSNotFound;
 	
 	NSAssert(f.isValid(), NSLocalizedStringFromTable(@"Unable to open the output file for tagging.", @"Exceptions", @""));
 	
@@ -195,7 +193,7 @@
  			if(NSNotFound == index)
  				frame->setText(TagLib::String([genre UTF8String], TagLib::String::UTF8));
  			else
- 				frame->setText(TagLib::String([[NSString stringWithFormat:@"(%u)", index] UTF8String], TagLib::String::UTF8));
+				frame->setText(TagLib::String([[NSString stringWithFormat:@"(%ld)", (long)index] UTF8String], TagLib::String::UTF8));
  			
  			f.tag()->addFrame(frame);
  		}
@@ -271,7 +269,7 @@
 		frame = new TagLib::ID3v2::TextIdentificationFrame("TPOS", TagLib::String::Latin1);
 		NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 		
-		frame->setText(TagLib::String([[NSString stringWithFormat:@"/@u", [discTotal intValue]] UTF8String], TagLib::String::UTF8));
+		frame->setText(TagLib::String([[NSString stringWithFormat:@"/%u", [discTotal intValue]] UTF8String], TagLib::String::UTF8));
 		f.tag()->addFrame(frame);
 	}
 	
@@ -301,12 +299,12 @@
 	// Album art
 	albumArt = [metadata albumArt];
 	if(nil != albumArt) {
-		data			= getPNGDataForImage(albumArt); 
+		data			= GetPNGDataForImage(albumArt); 
 		pictureFrame	= new TagLib::ID3v2::AttachedPictureFrame();
 		NSAssert(NULL != pictureFrame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 		
 		pictureFrame->setMimeType(TagLib::String("image/png", TagLib::String::Latin1));
-		pictureFrame->setPicture(TagLib::ByteVector((const char *)[data bytes], [data length]));
+		pictureFrame->setPicture(TagLib::ByteVector((const char *)[data bytes], (unsigned int)[data length]));
 		f.tag()->addFrame(pictureFrame);
 	}
 	
@@ -389,7 +387,7 @@
 	
 	// Encoding time
 	frame = new TagLib::ID3v2::TextIdentificationFrame("TDEN", TagLib::String::Latin1);
-	timestamp = getID3v2Timestamp();
+	timestamp = GetID3v2Timestamp();
 	NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 	
 	frame->setText(TagLib::String([timestamp UTF8String], TagLib::String::UTF8));
@@ -397,7 +395,7 @@
 	
 	// Tagging time
 	frame = new TagLib::ID3v2::TextIdentificationFrame("TDTG", TagLib::String::Latin1);
-	timestamp = getID3v2Timestamp();
+	timestamp = GetID3v2Timestamp();
 	NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 	
 	frame->setText(TagLib::String([timestamp UTF8String], TagLib::String::UTF8));
@@ -438,7 +436,7 @@
 	NSString									*musicbrainzArtistId		= nil;
 	NSString									*musicbrainzAlbumArtistId	= nil;
 	NSString									*musicbrainzTrackId			= nil;
-	unsigned									index						= NSNotFound;
+	NSInteger									index						= NSNotFound;
 	
 	NSAssert(f.isValid(), NSLocalizedStringFromTable(@"Unable to open the output file for tagging.", @"Exceptions", @""));
 	
@@ -485,7 +483,7 @@
  			if(NSNotFound == index)
  				frame->setText(TagLib::String([genre UTF8String], TagLib::String::UTF8));
  			else
- 				frame->setText(TagLib::String([[NSString stringWithFormat:@"(%u)", index] UTF8String], TagLib::String::UTF8));
+				frame->setText(TagLib::String([[NSString stringWithFormat:@"(%ld)", (long)index] UTF8String], TagLib::String::UTF8));
  			
  			f.tag()->addFrame(frame);
  		}
@@ -561,7 +559,7 @@
 		frame = new TagLib::ID3v2::TextIdentificationFrame("TPOS", TagLib::String::Latin1);
 		NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 		
-		frame->setText(TagLib::String([[NSString stringWithFormat:@"/@u", [discTotal intValue]] UTF8String], TagLib::String::UTF8));
+		frame->setText(TagLib::String([[NSString stringWithFormat:@"/%u", [discTotal intValue]] UTF8String], TagLib::String::UTF8));
 		f.tag()->addFrame(frame);
 	}
 	
@@ -591,12 +589,12 @@
 	// Album art
 	albumArt = [metadata albumArt];
 	if(nil != albumArt) {
-		data			= getPNGDataForImage(albumArt); 
+		data			= GetPNGDataForImage(albumArt); 
 		pictureFrame	= new TagLib::ID3v2::AttachedPictureFrame();
 		NSAssert(NULL != pictureFrame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 		
 		pictureFrame->setMimeType(TagLib::String("image/png", TagLib::String::Latin1));
-		pictureFrame->setPicture(TagLib::ByteVector((const char *)[data bytes], [data length]));
+		pictureFrame->setPicture(TagLib::ByteVector((const char *)[data bytes], (unsigned int)[data length]));
 		f.tag()->addFrame(pictureFrame);
 	}
 	
@@ -679,7 +677,7 @@
 	
 	// Encoding time
 	frame = new TagLib::ID3v2::TextIdentificationFrame("TDEN", TagLib::String::Latin1);
-	timestamp = getID3v2Timestamp();
+	timestamp = GetID3v2Timestamp();
 	NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 	
 	frame->setText(TagLib::String([timestamp UTF8String], TagLib::String::UTF8));
@@ -687,7 +685,7 @@
 	
 	// Tagging time
 	frame = new TagLib::ID3v2::TextIdentificationFrame("TDTG", TagLib::String::Latin1);
-	timestamp = getID3v2Timestamp();
+	timestamp = GetID3v2Timestamp();
 	NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 	
 	frame->setText(TagLib::String([timestamp UTF8String], TagLib::String::UTF8));

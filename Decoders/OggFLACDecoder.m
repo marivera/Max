@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -156,6 +154,8 @@ metadataCallback(const FLAC__StreamDecoder *decoder, const FLAC__StreamMetadata 
 				 }
 					 break;
 				 */
+		default:
+			break;
 	}
 }
 
@@ -219,7 +219,8 @@ errorCallback(const FLAC__StreamDecoder *decoder, FLAC__StreamDecoderErrorStatus
 	FLAC__bool result = FLAC__stream_decoder_finish(_flac);
 	NSAssert1(YES == result, @"FLAC__stream_decoder_finish failed: %s", FLAC__stream_decoder_get_resolved_state_string(_flac));
 	
-	FLAC__stream_decoder_delete(_flac),		_flac = NULL;
+	FLAC__stream_decoder_delete(_flac);
+	_flac = NULL;
 	
 	[super dealloc];	
 }

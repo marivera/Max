@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -31,8 +29,8 @@
 	unsigned char		**_hashes;			// The SHA-256 for each sector in the file
 }
 
-- (id)					initWithSectorRange:(SectorRange *)range;
-- (id)					initWithFirstSector:(NSUInteger)firstSector lastSector:(NSUInteger)lastSector;
+- (instancetype)		initWithSectorRange:(SectorRange *)range;
+- (instancetype)		initWithFirstSector:(NSUInteger)firstSector lastSector:(NSUInteger)lastSector;
 
 // Easy access to the SectorRange contained in this rip
 - (NSUInteger)			firstSector;

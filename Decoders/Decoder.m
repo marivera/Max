@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -44,14 +42,14 @@
 	Decoder *result = nil;
 		
 	// Create the source based on the file's extension
-	NSArray			*coreAudioExtensions	= getCoreAudioExtensions();
-	NSArray			*libsndfileExtensions	= getLibsndfileExtensions();
+	NSArray			*coreAudioExtensions	= GetCoreAudioExtensions();
+	NSArray			*libsndfileExtensions	= GetLibsndfileExtensions();
 	NSString		*extension				= [[filename pathExtension] lowercaseString];
 
 	// Determine which type of converter to use and create it
 	if([extension isEqualToString:@"ogg"] || [extension isEqualToString:@"oga"]) {
 		// Determine the content type of the ogg stream
-		OggStreamType type = oggStreamType(filename);
+		OggStreamType type = GetOggStreamType(filename);
 		NSAssert(kOggStreamTypeInvalid != type, @"The file does not appear to be an Ogg file.");
 		NSAssert(kOggStreamTypeUnknown != type, @"The Ogg file's data format was not recognized.");
 		
@@ -59,6 +57,7 @@
 			case kOggStreamTypeVorbis:		result = [[OggVorbisDecoder alloc] initWithFilename:filename];		break;
 			case kOggStreamTypeFLAC:		result = [[OggFLACDecoder alloc] initWithFilename:filename];		break;
 			case kOggStreamTypeSpeex:		result = [[OggSpeexDecoder alloc] initWithFilename:filename];		break;
+			default:																							break;
 		}
 	}
 	else if([extension isEqualToString:@"flac"])
@@ -100,8 +99,10 @@
 
 - (void) dealloc
 {
-	[_pcmBuffer release],		_pcmBuffer = nil;
-	[_filename release],		_filename = nil;
+	[_pcmBuffer release];
+	_pcmBuffer = nil;
+	[_filename release];
+	_filename = nil;
 	
 	[super dealloc];
 }
@@ -144,9 +145,9 @@
 	
 	// If there still aren't enough bytes available, return what we have
 	if([[self pcmBuffer] bytesAvailable] < byteCount)
-		byteCount = [[self pcmBuffer] bytesAvailable];
+		byteCount = (UInt32)[[self pcmBuffer] bytesAvailable];
 			
-	bytesRead								= [[self pcmBuffer] getData:bufferList->mBuffers[0].mData byteCount:byteCount];
+	bytesRead								= (UInt32)[[self pcmBuffer] getData:bufferList->mBuffers[0].mData byteCount:byteCount];
 	bufferList->mBuffers[0].mNumberChannels	= [self pcmFormat].mChannelsPerFrame;
 	bufferList->mBuffers[0].mDataByteSize	= bytesRead;
 	framesRead								= bytesRead / [self pcmFormat].mBytesPerFrame;

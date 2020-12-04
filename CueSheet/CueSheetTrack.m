@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -93,21 +91,21 @@
 - (NSString *)				composer			{ return [[_composer retain] autorelease]; }
 - (NSString *)				comment				{ return [[_comment retain] autorelease]; }
 
-- (unsigned)				number				{ return _number; }
+- (NSUInteger)				number				{ return _number; }
 - (Float32)					sampleRate			{ return _sampleRate; }
 - (SInt64)					startingFrame		{ return _startingFrame; }
 - (UInt32)					frameCount			{ return _frameCount; }
 - (NSString *)				ISRC				{ return [[_ISRC retain] autorelease]; }
-- (unsigned)				preGap				{ return _preGap; }
-- (unsigned)				postGap				{ return _postGap; }
+- (NSUInteger)				preGap				{ return _preGap; }
+- (NSUInteger)				postGap				{ return _postGap; }
 
 #pragma mark Mutators
 
 - (void) setDocument:(CueSheetDocument *)document		{ [_document release]; _document = [document retain]; }
-- (void) setFilename:(NSString *)filename				{ [_filename release], _filename = [filename retain]; }
+- (void) setFilename:(NSString *)filename				{ [_filename release]; _filename = [filename retain]; }
 
 - (void) setSelected:(BOOL)selected						{ _selected = selected; }
-- (void) setNumber:(unsigned)number
+- (void) setNumber:(NSUInteger)number
 {
 	NSParameterAssert(1 <= number && number <= 99);
 	_number = number;
@@ -116,8 +114,8 @@
 - (void) setSampleRate:(Float32)sampleRate				{ _sampleRate = sampleRate; }
 - (void) setStartingFrame:(SInt64)startingFrame			{ _startingFrame = startingFrame; }
 - (void) setFrameCount:(UInt32)frameCount				{ _frameCount = frameCount; }
-- (void) setPreGap:(unsigned)preGap						{ _preGap = preGap; }
-- (void) setPostGap:(unsigned)postGap					{ _postGap = postGap; }
+- (void) setPreGap:(NSUInteger)preGap					{ _preGap = preGap; }
+- (void) setPostGap:(NSUInteger)postGap					{ _postGap = postGap; }
 
 - (void) setISRC:(NSString *)ISRC
 {
@@ -204,7 +202,7 @@
 	[result setValue:[self composer] forKey:@"composer"];
 	[result setValue:[self comment] forKey:@"comment"];
 	
-	[result setObject:[NSNumber numberWithUnsignedInt:[self number]] forKey:@"number"];
+	[result setObject:[NSNumber numberWithUnsignedInteger:[self number]] forKey:@"number"];
 //	[result setObject:[NSNumber numberWithUnsignedLong:[self firstSector]] forKey:@"firstSector"];
 //	[result setObject:[NSNumber numberWithUnsignedLong:[self lastSector]] forKey:@"lastSector"];
 //	[result setObject:[NSNumber numberWithUnsignedInt:[self channels]] forKey:@"channels"];

@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,8 +20,6 @@
 
 #import "CompactDisc.h"
 #import "Track.h"
-#import "MusicBrainzHelper.h"
-#import "AlbumArtMethods.h"
 
 enum {
 	kEncodeMenuItemTag					= 1,
@@ -35,11 +31,10 @@ enum {
 	kDownloadAlbumArtMenuItemTag		= 8
 };
 
-@interface CompactDiscDocument : NSDocument <AlbumArtMethods>
+@interface CompactDiscDocument : NSDocument
 {
     IBOutlet NSArrayController		*_trackController;
-    IBOutlet NSDrawer				*_trackDrawer;
-    IBOutlet NSDrawer				*_artDrawer;
+	IBOutlet NSPanel				*_metadataPanel;
     IBOutlet NSTableView			*_trackTable;
 	IBOutlet NSTextField			*_discNumberTextField;
 	IBOutlet NSTextField			*_discTotalTextField;
@@ -50,8 +45,6 @@ enum {
 	
 	BOOL							_ejectRequested;
 	
-	MusicBrainzHelper				*_mbHelper;
-
 	// Disc information
 	NSString						*_title;
 	NSString						*_artist;
@@ -65,8 +58,6 @@ enum {
 	NSString						*_musicbrainzArtistId;
 	
 	NSImage							*_albumArt;
-	
-	NSDate							*_albumArtDownloadDate;
 
 	// Other disc info
 	NSNumber						*_discNumber;
@@ -104,8 +95,7 @@ enum {
 - (IBAction)		queryMusicBrainz:(id)sender;
 - (void)			queryMusicBrainzNonInteractive;
 
-- (IBAction)		toggleTrackInformation:(id)sender;
-- (IBAction)		toggleAlbumArt:(id)sender;
+- (IBAction)		toggleMetadataInspectorPanel:(id)sender;
 
 - (IBAction)		selectNextTrack:(id)sender;
 - (IBAction)		selectPreviousTrack:(id)sender;
@@ -152,12 +142,6 @@ enum {
 - (NSImage *)		albumArt;
 - (void)			setAlbumArt:(NSImage *)albumArt;
 
-- (NSDate *)		albumArtDownloadDate;
-- (void)			setAlbumArtDownloadDate:(NSDate *)albumArtDownloadDate;
-
-- (NSUInteger)		albumArtWidth;
-- (NSUInteger)		albumArtHeight;
-
 - (NSNumber *)		discNumber;
 - (void)			setDiscNumber:(NSNumber *)discNumber;
 
@@ -186,10 +170,8 @@ enum {
 @end
 
 @interface CompactDiscDocument (ScriptingAdditions)
-- (id) handleEncodeScriptCommand:(NSScriptCommand *)command;
-- (id) handleEjectDiscScriptCommand:(NSScriptCommand *)command;
-- (id) handleQueryMusicBrainzScriptCommand:(NSScriptCommand *)command;
-- (id) handleToggleTrackInformationScriptCommand:(NSScriptCommand *)command;
-- (id) handleToggleAlbumArtScriptCommand:(NSScriptCommand *)command;
-- (id) handleFetchAlbumArtScriptCommand:(NSScriptCommand *)command;
+- (instancetype) handleEncodeScriptCommand:(NSScriptCommand *)command;
+- (instancetype) handleEjectDiscScriptCommand:(NSScriptCommand *)command;
+- (instancetype) handleQueryMusicBrainzScriptCommand:(NSScriptCommand *)command;
+- (instancetype) handleToggleInspectorPanelScriptCommand:(NSScriptCommand *)command;
 @end

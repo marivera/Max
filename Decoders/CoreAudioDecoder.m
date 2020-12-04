@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -28,14 +26,8 @@
 - (id) initWithFilename:(NSString *)filename
 {
 	if((self = [super initWithFilename:filename])) {
-		FSRef ref;
-		
-		// Open the input file
-		OSStatus result = FSPathMakeRef((const UInt8 *)[[self filename] fileSystemRepresentation], &ref, NULL);
-		NSAssert1(noErr == result, @"FSPathMakeRef failed: %@", UTCreateStringForOSType(result));
-		
-		result = ExtAudioFileOpen(&ref, &_extAudioFile);
-		NSAssert1(noErr == result, @"ExtAudioFileOpen failed: %@", UTCreateStringForOSType(result));
+		OSStatus result = ExtAudioFileOpenURL((CFURLRef)[NSURL fileURLWithPath:filename], &_extAudioFile);
+		NSAssert1(noErr == result, @"ExtAudioFileOpenURL failed: %@", UTCreateStringForOSType(result));
 		
 		// Query file type
 		UInt32 dataSize = sizeof(AudioStreamBasicDescription);
@@ -160,7 +152,7 @@
 	bufferList.mNumberBuffers				= 1;
 	bufferList.mBuffers[0].mNumberChannels	= [self pcmFormat].mChannelsPerFrame;
 	bufferList.mBuffers[0].mData			= [buffer exposeBufferForWriting];
-	bufferList.mBuffers[0].mDataByteSize	= [buffer freeSpaceAvailable];
+	bufferList.mBuffers[0].mDataByteSize	= (UInt32)[buffer freeSpaceAvailable];
 
 	frameCount								= bufferList.mBuffers[0].mDataByteSize / [self pcmFormat].mBytesPerFrame;
 	result									= ExtAudioFileRead(_extAudioFile, &frameCount, &bufferList);

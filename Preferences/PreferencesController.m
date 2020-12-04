@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -28,7 +26,6 @@ NSString *GeneralPreferencesToolbarItemIdentifier			= @"org.sbooth.Max.Preferenc
 NSString *FormatsPreferencesToolbarItemIdentifier			= @"org.sbooth.Max.Preferences.Toolbar.Formats";
 NSString *OutputPreferencesToolbarItemIdentifier			= @"org.sbooth.Max.Preferences.Toolbar.Output";
 NSString *TaggingPreferencesToolbarItemIdentifier			= @"org.sbooth.Max.Preferences.Toolbar.Tagging";
-NSString *MusicBrainzPreferencesToolbarItemIdentifier		= @"org.sbooth.Max.Preferences.Toolbar.MusicBrainz";
 NSString *RipperPreferencesToolbarItemIdentifier			= @"org.sbooth.Max.Preferences.Toolbar.Ripper";
 NSString *AlbumArtPreferencesToolbarItemIdentifier			= @"org.sbooth.Max.Preferences.Toolbar.AlbumArt";
 NSString *iTunesPreferencesToolbarItemIdentifier			= @"org.sbooth.Max.Preferences.Toolbar.iTunes";
@@ -53,7 +50,7 @@ NSString *PostProcessingPreferencesToolbarItemIdentifier	= @"org.sbooth.Max.Pref
 		defaultsDictionary	= [NSMutableDictionary dictionaryWithCapacity:20];
 		defaultFiles		= [NSArray arrayWithObjects:@"ApplicationControllerDefaults", @"MediaControllerDefaults",
 			@"ComparisonRipperDefaults", @"ParanoiaDefaults",
-			@"AlbumArtDefaults", @"MusicBrainzDefaults", nil];
+			@"AlbumArtDefaults", nil];
 		// Add the default values as resettable
 		for(i = 0; i < [defaultFiles count]; ++i) {
 			defaultsPath = [[NSBundle mainBundle] pathForResource:[defaultFiles objectAtIndex:i] ofType:@"plist"];
@@ -196,17 +193,6 @@ NSString *PostProcessingPreferencesToolbarItemIdentifier	= @"org.sbooth.Max.Pref
 		[toolbarItem setTarget:self];
 		[toolbarItem setAction:@selector(selectPreferencePaneUsingToolbar:)];
 	}
-    else if([itemIdentifier isEqualToString:MusicBrainzPreferencesToolbarItemIdentifier]) {
-        toolbarItem = [[[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier] autorelease];
-		
-		[toolbarItem setLabel: NSLocalizedStringFromTable(@"MusicBrainz", @"Preferences", @"")];
-		[toolbarItem setPaletteLabel: NSLocalizedStringFromTable(@"MusicBrainz", @"Preferences", @"")];
-		[toolbarItem setToolTip: NSLocalizedStringFromTable(@"Specify the server used by MusicBrainz to retrieve disc information", @"Preferences", @"")];
-		[toolbarItem setImage: [NSImage imageNamed:@"MusicBrainz"]];
-		
-		[toolbarItem setTarget:self];
-		[toolbarItem setAction:@selector(selectPreferencePaneUsingToolbar:)];
-	}
     else if([itemIdentifier isEqualToString:RipperPreferencesToolbarItemIdentifier]) {
         toolbarItem = [[[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier] autorelease];
 		
@@ -265,7 +251,6 @@ NSString *PostProcessingPreferencesToolbarItemIdentifier	= @"org.sbooth.Max.Pref
 		FormatsPreferencesToolbarItemIdentifier,
 		OutputPreferencesToolbarItemIdentifier,
 		RipperPreferencesToolbarItemIdentifier,
-		MusicBrainzPreferencesToolbarItemIdentifier,
 		TaggingPreferencesToolbarItemIdentifier,
 		AlbumArtPreferencesToolbarItemIdentifier,
 		iTunesPreferencesToolbarItemIdentifier,
@@ -280,7 +265,6 @@ NSString *PostProcessingPreferencesToolbarItemIdentifier	= @"org.sbooth.Max.Pref
 		FormatsPreferencesToolbarItemIdentifier,
 		OutputPreferencesToolbarItemIdentifier,
 		RipperPreferencesToolbarItemIdentifier,
-		MusicBrainzPreferencesToolbarItemIdentifier,
 		TaggingPreferencesToolbarItemIdentifier,
 		AlbumArtPreferencesToolbarItemIdentifier,
 		iTunesPreferencesToolbarItemIdentifier,
@@ -299,7 +283,6 @@ NSString *PostProcessingPreferencesToolbarItemIdentifier	= @"org.sbooth.Max.Pref
 		FormatsPreferencesToolbarItemIdentifier,
 		OutputPreferencesToolbarItemIdentifier,
 		RipperPreferencesToolbarItemIdentifier,
-		MusicBrainzPreferencesToolbarItemIdentifier,
 		TaggingPreferencesToolbarItemIdentifier,
 		AlbumArtPreferencesToolbarItemIdentifier,
 		iTunesPreferencesToolbarItemIdentifier,
@@ -332,9 +315,12 @@ NSString *PostProcessingPreferencesToolbarItemIdentifier	= @"org.sbooth.Max.Pref
 	}
 
 	// Calculate toolbar height
+	windowFrame = [NSWindow contentRectForFrameRect:[myWindow frame] styleMask:[myWindow styleMask]];
 	if([toolbar isVisible]) {
-		windowFrame = [NSWindow contentRectForFrameRect:[myWindow frame] styleMask:[myWindow styleMask]];
 		toolbarHeight = NSHeight(windowFrame) - windowHeight;
+	}
+	else {
+		toolbarHeight = 0;
 	}
 	
 	newWindowHeight		= NSHeight([prefView frame]) + toolbarHeight;

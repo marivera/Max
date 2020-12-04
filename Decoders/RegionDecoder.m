@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2007 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -30,12 +28,12 @@
 	return [[[RegionDecoder alloc] initWithFilename:filename startingFrame:startingFrame] autorelease];
 }
 
-+ (id) decoderWithFilename:(NSString *)filename startingFrame:(SInt64)startingFrame frameCount:(NSUInteger)frameCount
++ (id) decoderWithFilename:(NSString *)filename startingFrame:(SInt64)startingFrame frameCount:(UInt32)frameCount
 {
 	return [[[RegionDecoder alloc] initWithFilename:filename startingFrame:startingFrame frameCount:frameCount] autorelease];
 }
 
-+ (id) decoderWithFilename:(NSString *)filename startingFrame:(SInt64)startingFrame frameCount:(NSUInteger)frameCount loopCount:(NSUInteger)loopCount
++ (id) decoderWithFilename:(NSString *)filename startingFrame:(SInt64)startingFrame frameCount:(UInt32)frameCount loopCount:(NSUInteger)loopCount
 {
 	return [[[RegionDecoder alloc] initWithFilename:filename startingFrame:startingFrame frameCount:frameCount loopCount:loopCount] autorelease];
 }
@@ -51,7 +49,7 @@
 			return nil;
 		}
 		
-		[self setFrameCount:[[self decoder] totalFrames]];
+		[self setFrameCount:(UInt32)[[self decoder] totalFrames]];
 	}
 	return self;
 }
@@ -68,7 +66,7 @@
 		}
 		
 		[self setStartingFrame:startingFrame];
-		[self setFrameCount:([[self decoder] totalFrames] - startingFrame)];
+		[self setFrameCount:(UInt32)([[self decoder] totalFrames] - startingFrame)];
 		
 		if(0 != [self startingFrame])
 			[self reset];
@@ -76,7 +74,7 @@
 	return self;
 }
 
-- (id) initWithFilename:(NSString *)filename startingFrame:(SInt64)startingFrame frameCount:(NSUInteger)frameCount
+- (id) initWithFilename:(NSString *)filename startingFrame:(SInt64)startingFrame frameCount:(UInt32)frameCount
 {
 	if((self = [super init])) {
 		_decoder = [Decoder decoderWithFilename:filename];
@@ -96,7 +94,7 @@
 	return self;
 }
 
-- (id) initWithFilename:(NSString *)filename startingFrame:(SInt64)startingFrame frameCount:(NSUInteger)frameCount loopCount:(NSUInteger)loopCount
+- (id) initWithFilename:(NSString *)filename startingFrame:(SInt64)startingFrame frameCount:(UInt32)frameCount loopCount:(NSUInteger)loopCount
 {
 	if((self = [super init])) {
 		_decoder = [Decoder decoderWithFilename:filename];
@@ -119,7 +117,8 @@
 
 - (void) dealloc
 {
-	[_decoder release], _decoder = nil;
+	[_decoder release];
+	_decoder = nil;
 		
 	[super dealloc];
 }
@@ -168,7 +167,7 @@
 	if([self loopCount] < [self completedLoops])
 		return 0;
 	
-	UInt32	framesRemaining		= [self startingFrame] + [self frameCount] - [[self decoder] currentFrame];
+	UInt32	framesRemaining		= (UInt32)([self startingFrame] + [self frameCount] - [[self decoder] currentFrame]);
 	UInt32	framesToRead		= (frameCount < framesRemaining ? frameCount : framesRemaining);
 	UInt32	framesRead			= 0;
 	

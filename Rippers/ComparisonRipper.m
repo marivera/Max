@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -127,7 +125,6 @@
 - (oneway void) ripToFile:(NSString *)filename
 {
 	OSStatus						err;
-	FSRef							ref;
 	AudioFileID						audioFile;
 	ExtAudioFileRef					extAudioFileRef;
 	AudioStreamBasicDescription		outputASBD;
@@ -153,11 +150,7 @@
 		outputASBD.mChannelsPerFrame	= 2;
 		outputASBD.mBitsPerChannel		= 16;
 		
-		// Open the output file
-		err = FSPathMakeRef((const UInt8 *)[filename fileSystemRepresentation], &ref, NULL);
-		NSAssert1(noErr == err, NSLocalizedStringFromTable(@"Unable to locate the output file.", @"Exceptions", @""), UTCreateStringForOSType(err));
-
-		err = AudioFileInitialize(&ref, kAudioFileCAFType, &outputASBD, 0, &audioFile);
+		err = AudioFileCreateWithURL((CFURLRef)[NSURL fileURLWithPath:filename], kAudioFileCAFType, &outputASBD, kAudioFileFlags_EraseFile, &audioFile);
 		NSAssert2(noErr == err, NSLocalizedStringFromTable(@"The call to %@ failed.", @"Exceptions", @""), @"AudioFileInitialize", UTCreateStringForOSType(err));
 		
 		err = ExtAudioFileWrapAudioFileID(audioFile, YES, &extAudioFileRef);
@@ -224,18 +217,18 @@
 	int8_t				*sectorAlias		= NULL;
 	
 	int8_t				sectorBuffer		[ kCDSectorSizeCDDA ];
-	unsigned			bufferLen			= 0;
+	NSUInteger			bufferLen			= 0;
 	
-	unsigned			sectorsRead			= 0;
-	unsigned			sectorCount			= 0;
-	unsigned			startSector			= 0;
-	unsigned			sectorsRemaining	= 0;
+	NSUInteger			sectorsRead			= 0;
+	NSUInteger			sectorCount			= 0;
+	NSUInteger			startSector			= 0;
+	NSUInteger			sectorsRemaining	= 0;
 	SectorRange			*readRange			= nil;
 	SectorRange			*blockRange			= nil;
 	OSStatus			err					= noErr;
-	unsigned			totalSectors		= 0;
-	unsigned			sectorsToRead		= 0;
-	unsigned long		iterations			= 0;
+	NSUInteger			totalSectors		= 0;
+	NSUInteger			sectorsToRead		= 0;
+	NSUInteger			iterations			= 0;
 	AudioBufferList		bufferList;
 	UInt32				frameCount			= 0;
 	NSMutableArray		*rips				= nil;
@@ -246,19 +239,19 @@
 	Rip					*comparator			= nil;
 	NSDate				*phaseStartTime		= nil;
 	BOOL				gotMatch;
-	unsigned			i, j, k;
-	unsigned			sector;
-	unsigned			sectorIndex;
-	unsigned			masterIndex;
-	unsigned			comparatorIndex;
-	unsigned			matchCount;
+	NSUInteger			i, j, k;
+	NSUInteger			sector;
+	NSUInteger			sectorIndex;
+	NSUInteger			masterIndex;
+	NSUInteger			comparatorIndex;
+	NSUInteger			matchCount;
 	unsigned char		*masterHash;
-	unsigned			blockEnd;
-	unsigned			retries;
-	unsigned			blockPadding;
+	NSUInteger			blockEnd;
+	NSUInteger			retries;
+	NSUInteger			blockPadding;
 	double				percentComplete;
 	NSTimeInterval		interval;
-	unsigned			secondsRemaining;	
+	NSUInteger			secondsRemaining;
 	
 	@try {
 		
@@ -331,7 +324,7 @@
 				readRange		= [SectorRange sectorRangeWithFirstSector:startSector sectorCount:sectorCount];
 
 				// Extract the audio from the disc
-				[self logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Ripping sectors %i - %i", @"Log", @""), [readRange firstSector], [readRange lastSector]]];				
+				[self logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Ripping sectors %lu - %lu", @"Log", @""), (unsigned long)[readRange firstSector], (unsigned long)[readRange lastSector]]];
 				sectorsRead		= [_drive readAudioAndErrorFlags:buffer sectorRange:readRange];
 				
 				NSAssert(sectorCount == sectorsRead, NSLocalizedStringFromTable(@"Unable to read from the disc.", @"Log", @""));
@@ -354,7 +347,7 @@
 						if(c2Buffer[j]) {
 							for(k = 0; k < 8; ++k) {
 								if((1 << k) & c2Buffer[j]) {
-									[self logMessage:[NSString stringWithFormat:@"C2 error for sector %u", [readRange firstSector] + (8 * j) + k]];
+									[self logMessage:[NSString stringWithFormat:@"C2 error for sector %lu", [readRange firstSector] + (8 * j) + k]];
 								}
 							}					
 						}
@@ -563,10 +556,10 @@
 				
 				// Log this message here, instead of in the comparison loop, to avoid repetitive messages
 				if(blockEnd == i) {
-					[self logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Mismatch for sector %i", @"Log", @""), [range sectorForIndex:i]]];
+					[self logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Mismatch for sector %lu", @"Log", @""), (unsigned long)[range sectorForIndex:i]]];
 				}
 				else {
-					[self logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Mismatches for sectors %i - %i", @"Log", @""), [range sectorForIndex:i], [range sectorForIndex:blockEnd]]];
+					[self logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Mismatches for sectors %lu - %lu", @"Log", @""), (unsigned long)[range sectorForIndex:i], (unsigned long)[range sectorForIndex:blockEnd]]];
 				}
 				
 				// Adjust boundaries so drive is up to speed when it reaches the problem area if
@@ -608,10 +601,10 @@
 					
 					// Extract the audio from the disc
 					if(1 == [readRange length]) {
-						[self logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Re-ripping sector %i", @"Log", @""), [readRange firstSector]]];
+						[self logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Re-ripping sector %lu", @"Log", @""), (unsigned long)[readRange firstSector]]];
 					}
 					else {
-						[self logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Re-ripping sectors %i - %i", @"Log", @""), [readRange firstSector], [readRange lastSector]]];
+						[self logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Re-ripping sectors %lu - %lu", @"Log", @""), (unsigned long)[readRange firstSector], (unsigned long)[readRange lastSector]]];
 					}
 					sectorsRead		= [_drive readAudioAndErrorFlags:buffer sectorRange:readRange];
 					
@@ -635,7 +628,7 @@
 							if(c2Buffer[j]) {
 								for(k = 0; k < 8; ++k) {
 									if((1 << k) & c2Buffer[j]) {
-										[self logMessage:[NSString stringWithFormat:@"C2 error for sector %u", [readRange firstSector] + (8 * j) + k]];
+										[self logMessage:[NSString stringWithFormat:@"C2 error for sector %lu", [readRange firstSector] + (8 * j) + k]];
 									}
 								}					
 							}
@@ -711,10 +704,10 @@
 			// Put the data in an AudioBufferList
 			bufferList.mNumberBuffers					= 1;
 			bufferList.mBuffers[0].mData				= buffer;
-			bufferList.mBuffers[0].mDataByteSize		= [readRange byteSize];
+			bufferList.mBuffers[0].mDataByteSize		= (UInt32)[readRange byteSize];
 			bufferList.mBuffers[0].mNumberChannels		= 2;
 			
-			frameCount									= [readRange byteSize] / 4;
+			frameCount									= (UInt32)([readRange byteSize] / 4);
 			
 			// Write the data
 			err = ExtAudioFileWrite(file, frameCount, &bufferList);
@@ -790,7 +783,7 @@
 			tmpDir = [NSTemporaryDirectory() fileSystemRepresentation];
 		}
 		
-		validateAndCreateDirectory([NSString stringWithCString:tmpDir encoding:NSASCIIStringEncoding]);
+		ValidateAndCreateDirectory([NSString stringWithCString:tmpDir encoding:NSASCIIStringEncoding]);
 		
 		tmpDirLen	= strlen(tmpDir);
 		path		= malloc((tmpDirLen + patternLen + 1) *  sizeof(char));

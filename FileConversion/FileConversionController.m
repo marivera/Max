@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -24,26 +22,17 @@
 #import "EncoderController.h"
 #import "PreferencesController.h"
 #import "Genres.h"
-#import "AmazonAlbumArtSheet.h"
 #import "ImageAndTextCell.h"
 #import "UtilityFunctions.h"
 
 static FileConversionController		*sharedController						= nil;
 
 @interface FileConversionController (Private)
-- (void)	addFilesPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 - (BOOL)	addOneFile:(NSString *)filename atIndex:(NSUInteger)index;
 - (void)	clearFileList;
-- (void)	selectAlbumArtPanelDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 @end
 
 @implementation FileConversionController
-
-+ (void) initialize
-{
-	[self setKeys:[NSArray arrayWithObject:@"metadata.albumArt"] triggerChangeNotificationsForDependentKey:@"albumArtWidth"];
-	[self setKeys:[NSArray arrayWithObject:@"metadata.albumArt"] triggerChangeNotificationsForDependentKey:@"albumArtHeight"];
-}
 
 + (FileConversionController *) sharedController
 {
@@ -80,19 +69,11 @@ static FileConversionController		*sharedController						= nil;
 	}
 	else if([item action] == @selector(downloadAlbumArt:))
 	   return 0 != [[_filesController selectedObjects] count];
-	else if([item action] == @selector(toggleTrackInformation:)) {
-		if(NSDrawerOpenState == [_metadataDrawer state] || NSDrawerOpeningState == [_metadataDrawer state])
-			[item setTitle:NSLocalizedStringFromTable(@"Hide Metadata", @"Menus", @"")];
+	else if([item action] == @selector(toggleMetadataInspectorPanel:)) {
+		if([_metadataPanel isVisible])
+			[item setTitle:NSLocalizedStringFromTable(@"Hide Metadata Inspector", @"Menus", @"")];
 		else
-			[item setTitle:NSLocalizedStringFromTable(@"Show Metadata", @"Menus", @"")];
-		
-		return YES;
-	}
-	else if([item action] == @selector(toggleAlbumArt:)) {
-		if(NSDrawerOpenState == [_artDrawer state] || NSDrawerOpeningState == [_artDrawer state])
-			[item setTitle:NSLocalizedStringFromTable(@"Hide Album Art", @"Menus", @"")];
-		else
-			[item setTitle:NSLocalizedStringFromTable(@"Show Album Art", @"Menus", @"")];
+			[item setTitle:NSLocalizedStringFromTable(@"Show Metadata Inspector", @"Menus", @"")];
 		
 		return YES;
 	}
@@ -114,7 +95,7 @@ static FileConversionController		*sharedController						= nil;
 		nil]];
 
 	// Setup the toolbar
-	FileConversionToolbar *toolbar = [[FileConversionToolbar alloc] init];
+	FileConversionToolbar *toolbar = [[FileConversionToolbar alloc] initWithIdentifier:@"org.sbooth.Max.FileConversionToolbar"];
     
     [toolbar setAllowsUserCustomization:YES];
     [toolbar setAutosavesConfiguration:YES];
@@ -308,14 +289,14 @@ static FileConversionController		*sharedController						= nil;
 	[self clearFileList];
 }
 
-- (IBAction) toggleTrackInformation:(id)sender
+- (IBAction) toggleMetadataInspectorPanel:(id)sender
 {
-	[_metadataDrawer toggle:sender];
-}
-
-- (IBAction) toggleAlbumArt:(id)sender
-{
-	[_artDrawer toggle:sender];
+	if(![_metadataPanel isVisible]) {
+		[_metadataPanel orderFront:sender];
+	}
+	else {
+		[_metadataPanel orderOut:sender];
+	}
 }
 
 - (IBAction) addFiles:(id)sender
@@ -324,8 +305,14 @@ static FileConversionController		*sharedController						= nil;
 	
 	[panel setAllowsMultipleSelection:YES];
 	[panel setCanChooseDirectories:YES];
-	
-	[panel beginSheetForDirectory:nil file:nil types:getAudioExtensions() modalForWindow:[self window] modalDelegate:self didEndSelector:@selector(addFilesPanelDidEnd:returnCode:contextInfo:) contextInfo:NULL];	
+	[panel setAllowedFileTypes:GetAudioExtensions()];
+
+	[panel beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse result) {
+		if(NSOKButton == result) {
+			for(NSURL *url in [panel URLs])
+				[self addFile:[url path]];
+		}
+	}];
 }
 
 - (IBAction) removeFiles:(id)sender
@@ -345,7 +332,7 @@ static FileConversionController		*sharedController						= nil;
 	NSAutoreleasePool	*pool				= [[NSAutoreleasePool alloc] init];
 	NSAutoreleasePool	*loopPool			= nil;
 	NSFileManager		*manager			= [NSFileManager defaultManager];
-	NSArray				*allowedTypes		= getAudioExtensions();
+	NSArray				*allowedTypes		= GetAudioExtensions();
 	NSMutableArray		*newFiles;
 	NSDictionary		*file;
 	NSArray				*subpaths;
@@ -423,9 +410,6 @@ static FileConversionController		*sharedController						= nil;
 	return [[_filesController selection] valueForKeyPath:@"metadata.albumTitle"];
 }
 
-- (NSUInteger) albumArtWidth	{ return [[[_filesController selection] valueForKeyPath:@"metadata.albumArt"] size].width; }
-- (NSUInteger) albumArtHeight	{ return [[[_filesController selection] valueForKeyPath:@"metadata.albumArt"] size].height; }
-
 - (void) setAlbumArt:(NSImage *)albumArt
 {
 	[[_filesController selection] setValue:albumArt forKeyPath:@"metadata.albumArt"];
@@ -435,8 +419,6 @@ static FileConversionController		*sharedController						= nil;
 
 - (IBAction) downloadAlbumArt:(id)sender
 {	
-	AmazonAlbumArtSheet *art = [[(AmazonAlbumArtSheet *)[AmazonAlbumArtSheet alloc] initWithSource:self] autorelease];
-	[art showAlbumArtMatches];
 }
 
 - (IBAction) selectAlbumArt:(id) sender
@@ -446,8 +428,18 @@ static FileConversionController		*sharedController						= nil;
 	[panel setAllowsMultipleSelection:NO];
 	[panel setCanChooseDirectories:NO];
 	[panel setCanChooseFiles:YES];
-	
-	[panel beginSheetForDirectory:nil file:nil types:[NSImage imageFileTypes] modalForWindow:[self window] modalDelegate:self didEndSelector:@selector(selectAlbumArtPanelDidEnd:returnCode:contextInfo:) contextInfo:nil];
+	[panel setAllowedFileTypes:[NSImage imageFileTypes]];
+
+	[panel beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse result) {
+	    if(NSOKButton == result) {
+			for(NSURL *url in [panel URLs]) {
+				NSImage *image = [[NSImage alloc] initWithContentsOfURL:url];
+				if(nil != image) {
+					[[_filesController selection] setValue:[image autorelease] forKeyPath:@"metadata.albumArt"];
+				}
+			}
+		}
+	}];
 }
 
 #pragma mark NSTableView Delegate Methods
@@ -475,15 +467,6 @@ static FileConversionController		*sharedController						= nil;
 
 @implementation FileConversionController (Private)
 
-- (void) addFilesPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void *)contextInfo
-{
-	if(NSOKButton == returnCode) {
-		NSArray *filenames = [panel filenames];
-		for(NSString *filename in filenames)
-			[self addFile:filename];
-	}
-}
-
 - (BOOL) addOneFile:(NSString *)filename atIndex:(NSUInteger)index
 {
 	NSImage				*icon			= nil;
@@ -494,7 +477,7 @@ static FileConversionController		*sharedController						= nil;
 		return YES;
 	}
 	// Only accept files with our extensions
-	else if(NO == [getAudioExtensions() containsObject:[[filename pathExtension] lowercaseString]]) {	
+	else if(NO == [GetAudioExtensions() containsObject:[[filename pathExtension] lowercaseString]]) {	
 		return NO;
 	}
 	
@@ -515,7 +498,7 @@ static FileConversionController		*sharedController						= nil;
 	}
 	
 	// Get the icon for the file
-	icon = getIconForFile(filename, NSMakeSize(16, 16));
+	icon = GetIconForFile(filename, NSMakeSize(16, 16));
 	
 	if(NSNotFound == index) {
 		[_filesController addObject:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:filename, [[NSFileManager defaultManager] displayNameAtPath:filename], icon, metadata, nil] forKeys:[NSArray arrayWithObjects:@"filename", @"displayName", @"icon", @"metadata", nil]]];
@@ -530,23 +513,6 @@ static FileConversionController		*sharedController						= nil;
 - (void) clearFileList
 {
 	[_filesController removeObjects:[_filesController arrangedObjects]];
-}
-
-- (void) selectAlbumArtPanelDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
-{
-    if(NSOKButton == returnCode) {
-		NSArray		*filesToOpen	= [sheet filenames];
-		NSUInteger	count			= [filesToOpen count];
-		NSUInteger	i;
-		NSImage		*image			= nil;
-		
-		for(i = 0; i < count; ++i) {
-			image = [[NSImage alloc] initWithContentsOfFile:[filesToOpen objectAtIndex:i]];
-			if(nil != image) {
-				[[_filesController selection] setValue:[image autorelease] forKeyPath:@"metadata.albumArt"];
-			}
-		}
-	}
 }
 
 @end

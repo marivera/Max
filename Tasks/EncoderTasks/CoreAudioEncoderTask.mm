@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2009 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -71,7 +69,6 @@
 	// Use (unimplemented as of 10.4.3) CoreAudio metadata functions
 	else {
 		OSStatus				err;
-		FSRef					ref;
 		AudioFileID				fileID;
 		NSMutableDictionary		*info;
 		UInt32					size;
@@ -88,11 +85,8 @@
 		NSString				*trackComment			= nil;
 		
 		@try {
-			err = FSPathMakeRef((const UInt8 *)[[self outputFilename] fileSystemRepresentation], &ref, NULL);
-			NSAssert1(noErr == err, NSLocalizedStringFromTable(@"Unable to locate the output file.", @"Exceptions", @""), UTCreateStringForOSType(err));
-			
-			err = AudioFileOpen(&ref, fsRdWrPerm, [self fileType], &fileID);
-			NSAssert2(noErr == err, NSLocalizedStringFromTable(@"The call to %@ failed.", @"Exceptions", @""), @"AudioFileOpen", UTCreateStringForOSType(err));
+			err = AudioFileOpenURL((CFURLRef)[NSURL fileURLWithPath:[self outputFilename]], kAudioFileReadWritePermission, [self fileType], &fileID);
+			NSAssert2(noErr == err, NSLocalizedStringFromTable(@"The call to %@ failed.", @"Exceptions", @""), @"AudioFileOpenURL", UTCreateStringForOSType(err));
 			
 			// Get the dictionary and set properties
 			size = sizeof(info);
@@ -183,11 +177,11 @@
 
 - (NSString *) outputFormatName
 {
-	return getCoreAudioOutputFormatName([self fileType], [self formatID], [[[self encoderSettings] objectForKey:@"formatFlags"] unsignedLongValue]);
+	return GetCoreAudioOutputFormatName([self fileType], [self formatID], (UInt32)[[[self encoderSettings] objectForKey:@"formatFlags"] unsignedLongValue]);
 }
 
-- (AudioFileTypeID)		fileType		{ return [[[self encoderSettings] objectForKey:@"fileType"] unsignedLongValue]; }
-- (UInt32)				formatID		{ return [[[self encoderSettings] objectForKey:@"formatID"] unsignedLongValue]; }
+- (AudioFileTypeID)		fileType		{ return (AudioFileTypeID)[[[self encoderSettings] objectForKey:@"fileType"] unsignedLongValue]; }
+- (UInt32)				formatID		{ return (UInt32)[[[self encoderSettings] objectForKey:@"formatID"] unsignedLongValue]; }
 
 @end
 
@@ -257,7 +251,7 @@
 	NSString				*tempFilename			= NULL;
 
 	// Open the file for modification
-	mp4FileHandle = MP4Modify([[self outputFilename] fileSystemRepresentation], MP4_DETAILS_ERROR, 0);
+	mp4FileHandle = MP4Modify([[self outputFilename] fileSystemRepresentation], 0);
 	NSAssert(MP4_INVALID_FILE_HANDLE != mp4FileHandle, NSLocalizedStringFromTable(@"Unable to open the output file for tagging.", @"Exceptions", @""));
 	
 	// Read the tags
@@ -361,11 +355,11 @@
 	// Album art
 	albumArt = [metadata albumArt];
 	if(nil != albumArt) {
-		data = getPNGDataForImage(albumArt);
+		data = GetPNGDataForImage(albumArt);
 
 		MP4TagArtwork artwork;
 		artwork.data = (void *)[data bytes];
-		artwork.size = [data length];
+		artwork.size = (uint32_t)[data length];
 		artwork.type = MP4_ART_PNG;
 		
 		MP4TagsAddArtwork(tags, &artwork);
@@ -386,14 +380,15 @@
 
 	// Optimize the atoms so the MP4 files will play on shared iTunes libraries
 	// mp4v2 creates a temp file in ., so use a custom file and manually rename it	
-	tempFilename = generateTemporaryFilename([[[self taskInfo] settings] objectForKey:@"temporaryDirectory"], [self fileExtension]);
+	tempFilename = GenerateTemporaryFilename([[[self taskInfo] settings] objectForKey:@"temporaryDirectory"], [self fileExtension]);
 	
-	if(MP4Optimize([[self outputFilename] fileSystemRepresentation], [tempFilename fileSystemRepresentation], 0)) {
+	if(MP4Optimize([[self outputFilename] fileSystemRepresentation], [tempFilename fileSystemRepresentation])) {
 		NSFileManager	*fileManager	= [NSFileManager defaultManager];
 		
 		// Delete the existing output file
-		if([fileManager removeFileAtPath:[self outputFilename] handler:nil]) {
-			if(NO == [fileManager movePath:tempFilename toPath:[self outputFilename] handler:nil]) {
+		NSError *error = nil;
+		if([fileManager removeItemAtPath:[self outputFilename] error:&error]) {
+			if(![fileManager moveItemAtPath:tempFilename toPath:[self outputFilename] error:&error]) {
 				[[LogController sharedController] logMessage:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Warning: the file %@ was lost.", @"Exceptions", @""), [[NSFileManager defaultManager] displayNameAtPath:[self outputFilename]]]];
 			}
 		}
@@ -438,7 +433,7 @@
 	NSString									*musicbrainzArtistId		= nil;
 	NSString									*musicbrainzAlbumArtistId	= nil;
 	NSString									*musicbrainzTrackId			= nil;
-	unsigned									index						= NSNotFound;
+	NSInteger									index						= NSNotFound;
 	
 	NSAssert(f.isValid(), NSLocalizedStringFromTable(@"Unable to open the output file for tagging.", @"Exceptions", @""));
 	
@@ -485,7 +480,7 @@
  			if(NSNotFound == index)
  				frame->setText(TagLib::String([genre UTF8String], TagLib::String::UTF8));
  			else
- 				frame->setText(TagLib::String([[NSString stringWithFormat:@"(%u)", index] UTF8String], TagLib::String::UTF8));
+				frame->setText(TagLib::String([[NSString stringWithFormat:@"(%ld)", (long)index] UTF8String], TagLib::String::UTF8));
  			
  			f.tag()->addFrame(frame);
  		}
@@ -561,7 +556,7 @@
 		frame = new TagLib::ID3v2::TextIdentificationFrame("TPOS", TagLib::String::Latin1);
 		NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 		
-		frame->setText(TagLib::String([[NSString stringWithFormat:@"/@u", [discTotal intValue]] UTF8String], TagLib::String::UTF8));
+		frame->setText(TagLib::String([[NSString stringWithFormat:@"/%u", [discTotal intValue]] UTF8String], TagLib::String::UTF8));
 		f.tag()->addFrame(frame);
 	}
 	
@@ -591,12 +586,12 @@
 	// Album art
 	albumArt = [metadata albumArt];
 	if(nil != albumArt) {
-		data			= getPNGDataForImage(albumArt); 
+		data			= GetPNGDataForImage(albumArt); 
 		pictureFrame	= new TagLib::ID3v2::AttachedPictureFrame();
 		NSAssert(NULL != pictureFrame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 		
 		pictureFrame->setMimeType(TagLib::String("image/png", TagLib::String::Latin1));
-		pictureFrame->setPicture(TagLib::ByteVector((const char *)[data bytes], [data length]));
+		pictureFrame->setPicture(TagLib::ByteVector((const char *)[data bytes], (unsigned int)[data length]));
 		f.tag()->addFrame(pictureFrame);
 	}
 	
@@ -679,7 +674,7 @@
 	
 	// Encoding time
 	frame = new TagLib::ID3v2::TextIdentificationFrame("TDEN", TagLib::String::Latin1);
-	timestamp = getID3v2Timestamp();
+	timestamp = GetID3v2Timestamp();
 	NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 	
 	frame->setText(TagLib::String([timestamp UTF8String], TagLib::String::UTF8));
@@ -687,7 +682,7 @@
 	
 	// Tagging time
 	frame = new TagLib::ID3v2::TextIdentificationFrame("TDTG", TagLib::String::Latin1);
-	timestamp = getID3v2Timestamp();
+	timestamp = GetID3v2Timestamp();
 	NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 	
 	frame->setText(TagLib::String([timestamp UTF8String], TagLib::String::UTF8));
@@ -728,7 +723,7 @@
 	NSString									*musicbrainzArtistId		= nil;
 	NSString									*musicbrainzAlbumArtistId	= nil;
 	NSString									*musicbrainzTrackId			= nil;
-	unsigned									index						= NSNotFound;
+	NSInteger									index						= NSNotFound;
 	
 	NSAssert(f.isValid(), NSLocalizedStringFromTable(@"Unable to open the output file for tagging.", @"Exceptions", @""));
 	
@@ -775,7 +770,7 @@
  			if(NSNotFound == index)
  				frame->setText(TagLib::String([genre UTF8String], TagLib::String::UTF8));
  			else
- 				frame->setText(TagLib::String([[NSString stringWithFormat:@"(%u)", index] UTF8String], TagLib::String::UTF8));
+				frame->setText(TagLib::String([[NSString stringWithFormat:@"(%ld)", (long)index] UTF8String], TagLib::String::UTF8));
  			
  			f.tag()->addFrame(frame);
  		}
@@ -851,7 +846,7 @@
 		frame = new TagLib::ID3v2::TextIdentificationFrame("TPOS", TagLib::String::Latin1);
 		NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 		
-		frame->setText(TagLib::String([[NSString stringWithFormat:@"/@u", [discTotal intValue]] UTF8String], TagLib::String::UTF8));
+		frame->setText(TagLib::String([[NSString stringWithFormat:@"/%u", [discTotal intValue]] UTF8String], TagLib::String::UTF8));
 		f.tag()->addFrame(frame);
 	}
 	
@@ -881,12 +876,12 @@
 	// Album art
 	albumArt = [metadata albumArt];
 	if(nil != albumArt) {
-		data			= getPNGDataForImage(albumArt); 
+		data			= GetPNGDataForImage(albumArt); 
 		pictureFrame	= new TagLib::ID3v2::AttachedPictureFrame();
 		NSAssert(NULL != pictureFrame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 		
 		pictureFrame->setMimeType(TagLib::String("image/png", TagLib::String::Latin1));
-		pictureFrame->setPicture(TagLib::ByteVector((const char *)[data bytes], [data length]));
+		pictureFrame->setPicture(TagLib::ByteVector((const char *)[data bytes], (unsigned int)[data length]));
 		f.tag()->addFrame(pictureFrame);
 	}
 	
@@ -969,7 +964,7 @@
 	
 	// Encoding time
 	frame = new TagLib::ID3v2::TextIdentificationFrame("TDEN", TagLib::String::Latin1);
-	timestamp = getID3v2Timestamp();
+	timestamp = GetID3v2Timestamp();
 	NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 	
 	frame->setText(TagLib::String([timestamp UTF8String], TagLib::String::UTF8));
@@ -977,7 +972,7 @@
 	
 	// Tagging time
 	frame = new TagLib::ID3v2::TextIdentificationFrame("TDTG", TagLib::String::Latin1);
-	timestamp = getID3v2Timestamp();
+	timestamp = GetID3v2Timestamp();
 	NSAssert(NULL != frame, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 	
 	frame->setText(TagLib::String([timestamp UTF8String], TagLib::String::UTF8));

@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2009 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -27,7 +25,7 @@ addMPEG4AACGaplessInformationAtom(NSString *filename, SInt64 totalFrames)
 {
 	NSCParameterAssert(nil != filename);
 	
-	MP4FileHandle file = MP4Modify([filename fileSystemRepresentation], MP4_DETAILS_ERROR, 0);
+	MP4FileHandle file = MP4Modify([filename fileSystemRepresentation], 0);
 	if(file == MP4_INVALID_FILE_HANDLE)
 		return;
 
@@ -37,7 +35,7 @@ addMPEG4AACGaplessInformationAtom(NSString *filename, SInt64 totalFrames)
 
 	// Construct the encoder delay and padding
 	unsigned delay		= 0x840;
-	unsigned padding	= (unsigned)ceil((totalFrames + 2112) / 1024.0) * 1024 - (totalFrames + 2112);
+	unsigned padding	= ceil((totalFrames + 2112) / 1024.0) * 1024 - (totalFrames + 2112);
 	
 	NSString *value	= [NSString stringWithFormat:@"00000000 %.8x %.8x %.16qx 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000", delay, padding, totalFrames];
 	
@@ -45,7 +43,7 @@ addMPEG4AACGaplessInformationAtom(NSString *filename, SInt64 totalFrames)
 	
 	MP4ItmfData *data = &smpb->dataList.elements[0];
 	data->typeCode = MP4_ITMF_BT_UTF8;
-	data->valueSize = strlen(utf8);
+	data->valueSize = (uint32_t)strlen(utf8);
 	data->value = (uint8_t *)malloc( data->valueSize );
 
 	memcpy(data->value, utf8, data->valueSize);
@@ -54,7 +52,7 @@ addMPEG4AACGaplessInformationAtom(NSString *filename, SInt64 totalFrames)
 	MP4ItmfAddItem(file, smpb);	
 	MP4ItmfItemFree(smpb);
 	
-	MP4Close(file);
+	MP4Close(file, 0);
 }
 
 void 
@@ -62,7 +60,7 @@ addMPEG4AACBitrateInformationAtom(NSString *filename, UInt32 bitrate, int bitrat
 {
 	NSCParameterAssert(nil != filename);
 	
-	MP4FileHandle file = MP4Modify([filename fileSystemRepresentation], MP4_DETAILS_ERROR, 0);
+	MP4FileHandle file = MP4Modify([filename fileSystemRepresentation], 0);
 	if(file == MP4_INVALID_FILE_HANDLE)
 		return;
 	
@@ -100,7 +98,7 @@ addMPEG4AACBitrateInformationAtom(NSString *filename, UInt32 bitrate, int bitrat
 
 	MP4ItmfData *data = &smpb->dataList.elements[0];
 	data->typeCode = MP4_ITMF_BT_IMPLICIT;
-	data->valueSize = [blockData length];
+	data->valueSize = (uint32_t)[blockData length];
 	data->value = (uint8_t *)malloc( data->valueSize );
 	
 	memcpy(data->value, [blockData bytes], data->valueSize);
@@ -109,5 +107,5 @@ addMPEG4AACBitrateInformationAtom(NSString *filename, UInt32 bitrate, int bitrat
 	MP4ItmfAddItem(file, smpb);	
 	MP4ItmfItemFree(smpb);
 	
-	MP4Close(file);
+	MP4Close(file, 0);
 }

@@ -1,7 +1,5 @@
 /*
- *  $Id$
- *
- *  Copyright (C) 2005 - 2007 Stephen F. Booth <me@sbooth.org>
+ *  Copyright (C) 2005 - 2020 Stephen F. Booth <me@sbooth.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -61,8 +59,8 @@
 	AudioBufferList					bufferList;
 	ssize_t							bufferLen					= 0;
 	UInt32							bufferByteSize				= 0;
-	WAVEFORMATEX					formatDesc;
-	str_utf16						*chars						= NULL;
+	APE::WAVEFORMATEX				formatDesc;
+	APE::str_utfn					*chars						= NULL;
 	int								result;
 	SInt64							totalFrames, framesToRead;
 	UInt32							frameCount;
@@ -109,17 +107,17 @@
 			case 8:				
 			case 24:
 				bufferList.mBuffers[0].mData			= calloc(bufferLen, sizeof(int8_t));
-				bufferList.mBuffers[0].mDataByteSize	= bufferLen * sizeof(int8_t);
+				bufferList.mBuffers[0].mDataByteSize	= (UInt32)bufferLen * sizeof(int8_t);
 				break;
 				
 			case 16:
 				bufferList.mBuffers[0].mData			= calloc(bufferLen, sizeof(int16_t));
-				bufferList.mBuffers[0].mDataByteSize	= bufferLen * sizeof(int16_t);
+				bufferList.mBuffers[0].mDataByteSize	= (UInt32)bufferLen * sizeof(int16_t);
 				break;
 				
 			case 32:
 				bufferList.mBuffers[0].mData			= calloc(bufferLen, sizeof(int32_t));
-				bufferList.mBuffers[0].mDataByteSize	= bufferLen * sizeof(int32_t);
+				bufferList.mBuffers[0].mDataByteSize	= (UInt32)bufferLen * sizeof(int32_t);
 				break;
 				
 			default:
@@ -135,7 +133,7 @@
 		NSAssert(NULL != _compressor, NSLocalizedStringFromTable(@"Unable to create the Monkey's Audio compressor.", @"Exceptions", @""));
 						
 		// Setup compressor
-		chars = GetUTF16FromANSI([filename fileSystemRepresentation]);
+		chars = APE::CAPECharacterHelper::GetUTF16FromANSI([filename fileSystemRepresentation]);
 		NSAssert(NULL != chars, NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @""));
 		
 		result = FillWaveFormatEx(&formatDesc, (int)[decoder pcmFormat].mSampleRate, [decoder pcmFormat].mBitsPerChannel, [decoder pcmFormat].mChannelsPerFrame);
@@ -245,7 +243,7 @@
 	uint32_t		*buffer32				= NULL;
 	unsigned		wideSample;
 	unsigned		sample, channel;
-	int				result;
+	APE::int64		result;
 	
 	// Convert MAC buffer to host endian byte order
 	switch(_sourceBitsPerChannel) {
