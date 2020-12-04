@@ -275,7 +275,6 @@
 		089C165DFE840E0CC02AAC07 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		1DC1094139AE09B3CBE5E796 /* Pods-Max.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Max.release.xcconfig"; path = "Pods/Target Support Files/Pods-Max/Pods-Max.release.xcconfig"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -837,21 +836,12 @@
 				326D254312DE4CF800767B04 /* taglib.framework in Frameworks */,
 				326D254512DE4CF800767B04 /* vorbis.framework in Frameworks */,
 				326D254712DE4CF800767B04 /* wavpack.framework in Frameworks */,
-				253EEBA74A90127E627CC2C9 /* Pods_Max.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E50839E644D31E0945DA62E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5B9FF0E8541D46F636461FC2 /* Pods_Max.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,8 +903,6 @@
 				29B97323FDCFA39411CA2CEA /* System Frameworks */,
 				8CEA08B70AC78374009E46CB /* External Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				5C967363DFCDA4B9A54DB7A3 /* Pods */,
-				0E50839E644D31E0945DA62E /* Frameworks */,
 			);
 			name = "cocoa test";
 			sourceTree = "<group>";
@@ -1452,12 +1440,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C1919DE08C50B7A00CB7453 /* Build configuration list for PBXNativeTarget "Max" */;
 			buildPhases = (
-				88902DC0AF57A45D14487E73 /* [CP] Check Pods Manifest.lock */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				8C9A24AC0925ACF400FB244D /* Copy Frameworks */,
-				F47F40FDB9D82E682836DFFD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1475,7 +1461,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = sbooth.org;
 			};
 			buildConfigurationList = 8C1919E208C50B7A00CB7453 /* Build configuration list for PBXProject "Max" */;
@@ -1492,7 +1478,6 @@
 				it,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* cocoa test */;
-			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -1592,55 +1577,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		88902DC0AF57A45D14487E73 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Max-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F47F40FDB9D82E682836DFFD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Max/Pods-Max-frameworks.sh",
-				"${PODS_ROOT}/Sparkle/Sparkle.framework",
-				"${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/Sparkle.framework.dSYM",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Max/Pods-Max-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
@@ -2326,8 +2262,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.sbooth.Max;
 				PRODUCT_NAME = Max;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
-				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = /usr/local/include;
 			};
 			name = Debug;
 		};
@@ -2354,7 +2288,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.sbooth.Max;
 				PRODUCT_NAME = Max;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
 			name = Release;
 		};
